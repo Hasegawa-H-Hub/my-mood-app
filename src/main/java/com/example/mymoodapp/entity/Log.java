@@ -5,21 +5,25 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//このクラスはホームの
+/**
+ * 記録（Log）を表すEntityクラス。
+ * 日付・ひとことメモ・気分IDなど、1件の記録に必要な情報を保持する。
+ * データベースの「log」テーブルに対応する。
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Log {
-	//記録を識別
+	//記録を一意に識別するID
 	private Integer id;
-	//作成日時
-	private LocalDateTime createdAt;
-	//更新日時
-	private LocalDateTime updatedAt;
-	//メモ
+	//新規の日付
+	private LocalDateTime created_at;
+	//更新の日時
+	private LocalDateTime updated_at;
+	//ひとことメモ（最大200文字）
 	private String memo;
-	//気分
-	private String mood;
+	//気分ID（moodテーブルへの外部キー）
+	private String mood_id;
 
 }
 
