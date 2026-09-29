@@ -1,0 +1,5 @@
+#DB接続のためのユーザー名を設定
+spring.datasource.username=username
+
+#DB接続のためのパスワードを設定
+spring.datasource.password=password
