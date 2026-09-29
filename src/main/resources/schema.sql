@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS log(
 	--ひとことメモ
 	memo varchar(200) NOT NULL,
 	--登録日付
-	created_at date NOT NULL,
+	created_at timestamp without time zone,
 	--更新日付
-	updated_at date NOT NULL
+	updated_at timestamp without time zone
 );
