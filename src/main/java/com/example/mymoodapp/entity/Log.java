@@ -17,13 +17,13 @@ public class Log {
 	//記録を一意に識別するID
 	private Integer id;
 	//新規の日付
-	private LocalDateTime created_at;
+	private LocalDateTime createdAt;
 	//更新の日時
-	private LocalDateTime updated_at;
+	private LocalDateTime updatedAt;
 	//ひとことメモ（最大200文字）
 	private String memo;
 	//気分ID（moodテーブルへの外部キー）
-	private String mood_id;
+	private String moodId;
 
 }
 
