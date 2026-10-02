@@ -1,6 +1,6 @@
 package com.example.mymoodapp.service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.mymoodapp.entity.Log;
@@ -34,7 +34,7 @@ public interface LogService {
 	/**
 	 * 日付検索
 	 */
-	List<Log> findByDate(LocalDateTime date);
+	List<Log> findByDate(LocalDate date);
 	
 	/**
 	 * 気分で絞り込み

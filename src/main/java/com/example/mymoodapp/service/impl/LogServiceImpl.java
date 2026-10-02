@@ -20,30 +20,30 @@ public class LogServiceImpl implements LogService{
 	//DI
     private final LogMapper logMapper;
 
-    //全記録を検索
+    //全記録を取得
     @Override
     public List<Log> findAllLog() {
         return logMapper.selectAll();
     }
-
-    //指定されたIDの記録を検索
+    
+    //指定されたIDの記録を取得
     @Override
     public Log findByIdLog(Integer id) {
         return logMapper.selectById(id);
     }
-
-    //指定された日付の記録を検索
+    
+  //指定された日付の記録を取得
     @Override
     public List<Log> findByDate(LocalDate date) {
         return logMapper.selectByDate(date);
     }
 
-    //指定された気分IDの記録を検索
+    //指定された気分IDの記録を取得
     @Override
     public List<Log> findByMoodId(Integer moodId) {
         return logMapper.selectByMoodId(moodId);
     }
-
+  
     //記録を新規登録します
     @Override
     public void insertLog(Log log) {
@@ -61,6 +61,5 @@ public class LogServiceImpl implements LogService{
     public void deleteLog(Integer id) {
         logMapper.delete(id);
     }
-
+    
 }
-
