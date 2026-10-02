@@ -1,6 +1,6 @@
 package com.example.mymoodapp.mapper;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -27,7 +27,7 @@ public interface LogMapper {
     void delete(@Param("id") Integer id);
 
     // 日付検索
-    List<Log> selectByDate(@Param("date")LocalDateTime date);
+    List<Log> selectByDate(@Param("date")LocalDate date);
 
     // 気分で絞り込み
     List<Log> selectByMoodId(@Param("moodid") Integer moodId);
