@@ -27,7 +27,7 @@ public interface LogMapper {
     void delete(@Param("id") Integer id);
 
     // 日付検索
-    List<Log> selectByDate(LocalDateTime date);
+    List<Log> selectByDate(@Param("date")LocalDateTime date);
 
     // 気分で絞り込み
     List<Log> selectByMoodId(@Param("moodid") Integer moodId);

@@ -23,7 +23,7 @@ public class Log {
 	//ひとことメモ（最大200文字）
 	private String memo;
 	//気分ID（moodテーブルへの外部キー）
-	private String moodId;
+	private Integer moodId;
 
 }
 
