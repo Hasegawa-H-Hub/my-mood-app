@@ -31,3 +31,4 @@ public interface LogService {
     List<Log> findByMoodId(Integer moodId);
 
 }
+//
