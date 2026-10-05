@@ -31,6 +31,6 @@ public interface LogMapper {
     List<Log> selectByDate(@Param("date")LocalDate date);
 
     // 気分で絞り込み
-    List<Log> selectByMoodId(@Param("moodid") Integer moodId);
+    List<Log> selectByMoodId(@Param("moodId") Integer moodId);
 
 }
