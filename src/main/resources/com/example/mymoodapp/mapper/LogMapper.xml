@@ -89,7 +89,7 @@ ORDER BY created_at DESC, l.id DESC
 <select id="selectByMoodId" resultMap="logWithMoodResult">
  <include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
 WHERE mood_id = #{moodid}
-ORDER BY created_at DESC, l.id DESC
+ORDER BY created_at DESC
 </select>
 
 </mapper>
