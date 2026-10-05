@@ -6,7 +6,6 @@
 <resultMap id="logWithMoodResult"
 type="com.example.mymoodapp.entity.Log">
 <id property="id" column ="id"/>
-<result property="moodId" column ="moodId"/>
 <result property="memo" column ="memo"/>
 <result property="createdAt" column ="createdAt"/>
 <result property="updatedAt" column ="updatedAt"/>
@@ -22,7 +21,6 @@ javaType="com.example.mymoodapp.entity.Mood">
 <sql id= "selectLogWithMoodName">
 SELECT
 l.id,
-mood_id as moodId,
 memo,
 created_at as createdAt,
 updated_at as updatedAt,
@@ -36,7 +34,21 @@ JOIN mood m ON mood_id = m.id
 <!-- 全件検索 -->
 <select id="selectAll" resultMap="logWithMoodResult">
 <include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
-ORDER BY created_at DESC
+
+ORDER BY created_at
+
+<choose>
+<when test= "sortOrder != null and sortOrder == 'ASC'">
+ASC
+</when>
+<when test = "sortOrder != null and sortOrder == 'DESC'">
+DESC
+</when>
+<otherwise>
+DESC
+</otherwise>
+</choose>
+,l.id DESC
 </select>
 
 <!-- 1件検索 -->
@@ -49,12 +61,12 @@ WHERE l.id = #{id}
 <insert id="insert">
 INSERT INTO log(mood_id, memo, created_at, updated_at)
 VALUES
-(#{moodId},#{memo},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+(#{mood.id},#{memo},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
 </insert>
 
 <!-- 更新 -->
 <update id="update">
-UPDATE log SET mood_id = #{moodId}, memo =#{memo},
+UPDATE log SET mood_id = #{mood.id}, memo =#{memo},
 updated_at = CURRENT_TIMESTAMP WHERE id = #{id}
 </update>
 
@@ -66,16 +78,18 @@ DELETE FROM log WHERE id = #{id}
 <!-- 日付検索 -->
 <select id="selectByDate" resultMap="logWithMoodResult">
 <include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
-WHERE created_at::date = #{date}
-ORDER BY created_at DESC,l.id DESC
+<![CDATA[
+WHERE created_at >= #{date}
+AND created_at < (CAST(#{date} AS date) + INTERVAL '1 day')
+ORDER BY created_at DESC, l.id DESC
+]]>
 </select>
 
 <!-- 気分で絞り込み -->
 <select id="selectByMoodId" resultMap="logWithMoodResult">
  <include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
 WHERE mood_id = #{moodid}
-ORDER BY created_at DESC,l.id DESC
-
+ORDER BY created_at DESC, l.id DESC
 </select>
 
 </mapper>
