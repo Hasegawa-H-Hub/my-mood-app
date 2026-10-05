@@ -12,9 +12,9 @@ public interface LogService {
     List<Log> findAllLog();
 
     //指定されたIDの記録を取得
+    
     Log findByIdLog(Integer id);
 
-   
     //新規登録
     void insertLog(Log log);
 
@@ -31,4 +31,3 @@ public interface LogService {
     List<Log> findByMoodId(Integer moodId);
 
 }
-//

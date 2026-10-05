@@ -37,6 +37,7 @@ public class LogServiceImpl implements LogService{
     public void insertLog(Log log) {
         logMapper.insert(log);
     }
+    
     // 更新
     @Override
     public void updateLog(Log log) {
@@ -48,7 +49,8 @@ public class LogServiceImpl implements LogService{
     public void deleteLog(Integer id) {
         logMapper.delete(id);
     }
-  //日付検索
+    
+    //日付検索
     @Override
     public List<Log> findByDate(LocalDate date) {
         return logMapper.selectByDate(date);
@@ -59,6 +61,5 @@ public class LogServiceImpl implements LogService{
     public List<Log> findByMoodId(Integer moodId) {
         return logMapper.selectByMoodId(moodId);
     }
-  
+
 }
-//
