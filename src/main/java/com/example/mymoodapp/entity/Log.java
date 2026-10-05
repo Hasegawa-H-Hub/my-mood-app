@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Log {
 	
-	//記録を一意に識別するID
+	//記録を識別するID
 	private Integer id;
 	
 	//新規の日付
@@ -29,7 +29,7 @@ public class Log {
 	private String memo;
 	
 	//気分ID（moodテーブルへの外部キー）
-	private Integer moodId;
+	private Mood mood;
 
 }
 
