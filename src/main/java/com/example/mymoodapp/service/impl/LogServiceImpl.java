@@ -26,40 +26,38 @@ public class LogServiceImpl implements LogService{
         return logMapper.selectAll();
     }
     
-    //指定されたIDの記録を取得
+    //IDから記録を取得
     @Override
     public Log findByIdLog(Integer id) {
         return logMapper.selectById(id);
     }
-    
-  //指定された日付の記録を取得
-    @Override
-    public List<Log> findByDate(LocalDate date) {
-        return logMapper.selectByDate(date);
-    }
-
-    //指定された気分IDの記録を取得
-    @Override
-    public List<Log> findByMoodId(Integer moodId) {
-        return logMapper.selectByMoodId(moodId);
-    }
-  
-    //記録を新規登録します
+   
+    //新規登録
     @Override
     public void insertLog(Log log) {
         logMapper.insert(log);
     }
-
-    //記録を更新します
+    // 更新
     @Override
     public void updateLog(Log log) {
         logMapper.update(log);
     }
 
-    //指定されたIDの記録を削除します
+    //削除
     @Override
     public void deleteLog(Integer id) {
         logMapper.delete(id);
     }
-    
+  //日付検索
+    @Override
+    public List<Log> findByDate(LocalDate date) {
+        return logMapper.selectByDate(date);
+    }
+
+    //気分で絞り込み
+    @Override
+    public List<Log> findByMoodId(Integer moodId) {
+        return logMapper.selectByMoodId(moodId);
+    }
+  
 }
