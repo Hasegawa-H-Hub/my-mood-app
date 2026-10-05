@@ -14,18 +14,20 @@ public interface LogService {
     //指定されたIDの記録を取得
     Log findByIdLog(Integer id);
 
-    //指定された日付の記録を検索
-    List<Log> findByDate(LocalDate date);
-
-    //指定された気分IDの記録を検索
-    List<Log> findByMoodId(Integer moodId);
-
-    //記録を新規登録します
+   
+    //新規登録
     void insertLog(Log log);
 
-    //記録を更新します
+    // 更新
     void updateLog(Log log);
 
-    //指定されたIDの記録を削除します
+    //削除
     void deleteLog(Integer id);
+    
+    //日付検索
+    List<Log> findByDate(LocalDate date);
+
+    //気分で絞り込み
+    List<Log> findByMoodId(Integer moodId);
+
 }
