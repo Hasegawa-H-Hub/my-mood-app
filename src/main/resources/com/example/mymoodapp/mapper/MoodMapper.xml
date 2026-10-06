@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mymoodapp.mapper.MoodMapper">
+
+<!-- 全件検索 -->
+<select id="selectAll" resultType="com.example.mymoodapp.entity.Mood">
+SELECT id, mood_name as moodName, mood_ja as moodJa FROM mood
+</select>
+
+
+<!-- 1件検索 -->
+<select id="selectById" resultType="com.example.mymoodapp.entity.Mood">
+SELECT id, mood_name as moodName, mood_ja as moodJa FROM mood
+WHERE id = #{id}
+</select>
+
+</mapper>
