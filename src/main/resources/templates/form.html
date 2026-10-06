@@ -4,24 +4,21 @@
 	<meta charset="UTF-8">
 	<title>記録フォーム画面</title>
 </head>
+<!-- 画面全体 -->
 <body>
-	<!-- 画面全体 -->
-	<div>
-		
-		<!-- ヘッダー -->
-		<div>
-			<!-- ロゴ -->
-			<h1>My Mood</h1>
-			
-			<!-- 一覧に戻る -->
-			<button type="button"><span>←</span>一覧に戻る</button>
-		</div>
-		
+	<!-- ヘッダー -->
+	<header>
+		<!-- ロゴ -->
+		<h1>My Mood</h1>
+		<!-- 一覧に戻る -->
+		<button type="button"><span>←</span>一覧に戻る</button>
+	</header>
+	<!-- メイン -->
+	<main>
 		<!-- フォーム外枠 -->
-		<div>
+		<section>
 			<!-- タイトル -->
 			<h2>新しい記録</h2>
-			
 			<!-- フォーム -->
 			<form>
 				<!-- 日付 -->
@@ -35,12 +32,10 @@
 						<button type="button"><span>🗓</span></button>
 					</div>
 				</div>
-				
 				<!-- 気分 -->
 				<div>
 					<!-- ラベル -->
 					<label>気分</label>
-					
 					<!-- 気分ボタン -->
 					<div>
 						<!-- とても良い -->
@@ -55,7 +50,6 @@
 						<button type="button">　</button>
 					</div>
 				</div>
-				
 				<!-- ひとことメモ -->
 				<div>
 					<!-- ラベル -->
@@ -68,7 +62,6 @@
 						<div><span>0</span> / 200</div>
 					</div>
 				</div>
-				
 				<!-- ボタン -->
 				<div>
 					<!-- キャンセル -->
@@ -77,8 +70,7 @@
 					<button type="submit">保存する</button>
 				</div>
 			</form>
-		</div>
-		
-	</div>
+		</section>
+	</main>
 </body>
 </html>
