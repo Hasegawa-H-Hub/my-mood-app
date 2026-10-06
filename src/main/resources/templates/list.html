@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>記録一覧画面</title>
+</head>
+<!-- 画面全体 -->
+<body>
+	<!-- ヘッダー -->
+	<header>
+		<!-- ロゴ -->
+		<h1>My Mood</h1>
+		<!-- 記録作成ボタン -->
+		<button type="button"><span>＋</span>記録する</button>
+	</header>
+	<!-- メイン -->
+	<main>
+		<!-- 絞り込み・並び替え -->
+		<section>
+			<form>
+				<!-- 気分で絞り込み -->
+				<div>
+					<span>気分で絞り込み：</span>
+					<button type="button">すべて</button>
+					<!-- うれしい -->
+					<button type="button">　</button>
+					<!-- たのしい -->
+					<button type="button">　</button>
+					<!-- ふつう -->
+					<button type="button">　</button>
+					<!-- かなしい -->
+					<button type="button">　</button>
+					<!-- いらいら -->
+					<button type="button">　</button>
+				</div>
+				<!-- 並び替え -->
+				<div>
+					<span>並び替え：</span>
+					<select>
+						<option>日付（新しい順）</option>
+						<option>日付（古い順）</option>
+					</select>
+				</div>
+			</form>
+		</section>
+		<!-- 記録一覧 -->
+		<section>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>日付</th>
+						<th>気分</th>
+						<th>ひとことメモ</th>
+						<th>メニュー</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- 2026/09/29 -->
+					<tr>
+						<td>2026/09/29（火）</td>
+						<td>　</td>
+						<td>
+							今日はとても良い日だった！<br>
+							天気も良くて、久しぶりに友達とカフェに行った。<br>
+							たくさん話せて気持ちがリフレッシュした。また行きたい。
+						</td>
+						<td>
+							<button type="button">•••</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	</main>
+</body>
+</html>
