@@ -1,7 +1,8 @@
 package com.example.mymoodapp.helper;
 
 import com.example.mymoodapp.entity.Log;
-//import com.example.mymoodapp.entity.LogForm;後で復活
+import com.example.mymoodapp.entity.Mood;
+import com.example.mymoodapp.form.LogForm;
 
 public class Loghelper {
 
@@ -14,7 +15,10 @@ public class Loghelper {
 
         log.setMemo(form.getMemo());
 
-        log.setMoodId(form.getMoodId());
+        Mood mood = new Mood();	
+        mood.setId(form.getMoodId());
+
+        log.setMood(mood);
 
         return log;
     }
@@ -28,9 +32,9 @@ public class Loghelper {
 
         form.setMemo(log.getMemo());
 
-        form.setMoodId(log.getMoodId());
+        form.setMoodId(log.getMood().getId());
 
-        //更新画面の設定
+       //更新画面の設定
         form.setIsNew(false);
 
         return form;
