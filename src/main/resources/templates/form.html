@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>記録フォーム画面</title>
+</head>
+<body>
+	<!-- 画面全体 -->
+	<div>
+		
+		<!-- ヘッダー -->
+		<div>
+			<!-- ロゴ -->
+			<h1>My Mood</h1>
+			
+			<!-- 一覧に戻る -->
+			<button type="button"><span>←</span>一覧に戻る</button>
+		</div>
+		
+		<!-- フォーム外枠 -->
+		<div>
+			<!-- タイトル -->
+			<h2>新しい記録</h2>
+			
+			<!-- フォーム -->
+			<form>
+				<!-- 日付 -->
+				<div>
+					<!-- ラベル -->
+					<label>日付</label>
+					<!-- 入力欄 -->
+					<div>
+						<input type="text" value="2026/09/29" readonly>
+						<!-- カレンダー -->
+						<button type="button"><span>🗓</span></button>
+					</div>
+				</div>
+				
+				<!-- 気分 -->
+				<div>
+					<!-- ラベル -->
+					<label>気分</label>
+					
+					<!-- 気分ボタン -->
+					<div>
+						<!-- とても良い -->
+						<button type="button">　</button>
+						<!-- 良い -->
+						<button type="button">　</button>
+						<!-- 普通 -->
+						<button type="button">　</button>
+						<!-- 悪い -->
+						<button type="button">　</button>
+						<!-- とても悪い -->
+						<button type="button">　</button>
+					</div>
+				</div>
+				
+				<!-- ひとことメモ -->
+				<div>
+					<!-- ラベル -->
+					<label>ひとことメモ</label>
+					
+					<!-- メモ -->
+					<div>
+						<textarea maxlength="200"></textarea>
+						<!-- 文字数 -->
+						<div><span>0</span> / 200</div>
+					</div>
+				</div>
+				
+				<!-- ボタン -->
+				<div>
+					<!-- キャンセル -->
+					<button type="button">キャンセル</button>
+					<!-- 保存 -->
+					<button type="submit">保存する</button>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+</body>
+</html>
