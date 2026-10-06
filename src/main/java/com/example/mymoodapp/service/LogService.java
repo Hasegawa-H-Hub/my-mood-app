@@ -12,7 +12,6 @@ public interface LogService {
     List<Log> findAllLog();
 
     //指定されたIDの記録を取得
-    
     Log findByIdLog(Integer id);
 
     //新規登録
@@ -29,5 +28,4 @@ public interface LogService {
 
     //気分で絞り込み
     List<Log> findByMoodId(Integer moodId);
-
 }

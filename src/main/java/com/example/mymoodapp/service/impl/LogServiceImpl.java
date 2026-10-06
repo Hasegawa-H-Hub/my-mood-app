@@ -61,4 +61,5 @@ public class LogServiceImpl implements LogService{
     public List<Log> findByMoodId(Integer moodId) {
         return logMapper.selectByMoodId(moodId);
     }
+    
 }
