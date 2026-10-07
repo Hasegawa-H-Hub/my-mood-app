@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang = "ja" xmlns:th="http://www.thymeleaf.org">
+
 <head>
 	<meta charset="UTF-8">
 	<title>記録フォーム画面</title>
 </head>
+
 <body>
 	<!-- 画面全体 -->
 	<div>
-		
 		<!-- ヘッダー -->
 		<div>
 			<!-- ロゴ -->
@@ -23,19 +24,11 @@
 			<h2>新しい記録</h2>
 			
 			<!-- フォーム -->
-			<form>
-				<!-- 日付 -->
-				<div>
-					<!-- ラベル -->
-					<label>日付</label>
-					<!-- 入力欄 -->
-					<div>
-						<input type="text" value="2026/09/29" readonly>
-						<!-- カレンダー -->
-						<button type="button"><span>🗓</span></button>
-					</div>
-				</div>
-				
+			<form th:action="@{/records}"
+				  th:object="${logForm}"
+				  method="post">
+			
+								
 				<!-- 気分 -->
 				<div>
 					<!-- ラベル -->
@@ -43,16 +36,20 @@
 					
 					<!-- 気分ボタン -->
 					<div>
-						<!-- とても良い -->
-						<button type="button">　</button>
-						<!-- 良い -->
-						<button type="button">　</button>
-						<!-- 普通 -->
-						<button type="button">　</button>
-						<!-- 悪い -->
-						<button type="button">　</button>
-						<!-- とても悪い -->
-						<button type="button">　</button>
+						<!--Moodテーブルのテータを1件ずつ取り出す-->
+						<div th:each="mood : ${moods}">
+							
+							<label>
+								<!-- 気分IDを送る -->
+								<input type="radio"
+									   th:field="*{moodId}"
+									   th:value="${mood.id}">
+									   
+								<!-- 気分画像 -->
+								<img th:src="@{/images/mood{id}.png(id=${mood.id})}"
+									 th:alt="${mood.name}">
+							</label>		 	   
+						</div>
 					</div>
 				</div>
 				
@@ -63,7 +60,10 @@
 					
 					<!-- メモ -->
 					<div>
-						<textarea maxlength="200"></textarea>
+						<textarea th:field="*{memo}"
+								  maxlength="200"
+								  placeholder="ここに入力してください"></textarea>
+								  
 						<!-- 文字数 -->
 						<div><span>0</span> / 200</div>
 					</div>
@@ -75,6 +75,8 @@
 					<button type="button">キャンセル</button>
 					<!-- 保存 -->
 					<button type="submit">保存する</button>
+					
+					
 				</div>
 			</form>
 		</div>
