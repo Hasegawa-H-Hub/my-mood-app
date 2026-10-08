@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>記録一覧画面</title>
@@ -11,36 +11,69 @@
 		<!-- ロゴ -->
 		<h1>My Mood</h1>
 		<!-- 記録作成ボタン -->
-		<button type="button"><span>＋</span>記録する</button>
+		<a th:href="@{/records/new}" class="create-button"><span>＋</span>記録する</a>
 	</header>
 	<!-- メイン -->
 	<main>
 		<!-- 絞り込み・並び替え -->
 		<section>
-			<form>
+			<form method="get">
 				<!-- 気分で絞り込み -->
-				<div>
-					<span>気分で絞り込み：</span>
-					<button type="button">すべて</button>
+				<fieldset class="mood-filter">
+					<legend>気分で絞り込み：</legend>
 					<!-- うれしい -->
-					<button type="button">　</button>
+					<label>
+						<input type="checkbox" name="moodIds" value="1"
+						       th:checked="${selectedMoodIds == null or selectedMoodIds.contains(1)}">
+						うれしい
+					</label>
 					<!-- たのしい -->
-					<button type="button">　</button>
+					<label>
+						<input type="checkbox" name="moodIds" value="2"
+						       th:checked="${selectedMoodIds == null or selectedMoodIds.contains(2)}">
+						たのしい
+					</label>
 					<!-- ふつう -->
-					<button type="button">　</button>
+					<label>
+						<input type="checkbox" name="moodIds" value="3"
+						       th:checked="${selectedMoodIds == null or selectedMoodIds.contains(3)}">
+						ふつう
+					</label>
 					<!-- かなしい -->
-					<button type="button">　</button>
+					<label>
+						<input type="checkbox" name="moodIds" value="4"
+						       th:checked="${selectedMoodIds == null or selectedMoodIds.contains(4)}">
+						かなしい
+					</label>
 					<!-- いらいら -->
-					<button type="button">　</button>
+					<label>
+						<input type="checkbox" name="moodIds" value="5"
+						       th:checked="${selectedMoodIds == null or selectedMoodIds.contains(5)}">
+						いらいら
+					</label>
+				</fieldset>
+				<!-- 期間で絞り込み -->
+				<div class="date-filter">
+					<label>開始日
+						<input type="date" name="startDate" th:value="${startDate}">
+					</label>
+					〜
+					<label>終了日
+						<input type="date" name="endDate" th:value="${endDate}">
+					</label>
 				</div>
 				<!-- 並び替え -->
-				<div>
+				<div class="sort-area">
 					<span>並び替え：</span>
-					<select>
-						<option>日付（新しい順）</option>
-						<option>日付（古い順）</option>
+					<select name="sort">
+						<option value="desc" th:selected="${sort == 'desc'}">日付（新しい順）</option>
+						<option value="asc" th:selected="${sort == 'asc'}">日付（古い順）</option>
 					</select>
 				</div>
+				<!-- 全選択／解除ボタン -->
+				<button type="button" class="toggle-button">全選択／解除</button>
+				<!-- 絞り込みボタン -->
+				<button type="submit" class="filter-button">絞り込み</button>
 			</form>
 		</section>
 		<!-- 記録一覧 -->
@@ -55,18 +88,32 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- 2026/09/29 -->
-					<tr>
-						<td>2026/09/29（火）</td>
-						<td>　</td>
+					<tr th:each="log : ${logs}">
+						<!-- 日付 -->
+						<td th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></td>
+						<!-- 気分 -->
 						<td>
-							今日はとても良い日だった！<br>
-							天気も良くて、久しぶりに友達とカフェに行った。<br>
-							たくさん話せて気持ちがリフレッシュした。また行きたい。
+							<img th:if="${log.mood != null}"
+							     th:src="@{|/images/mood/${log.mood.moodName}.svg|}"
+							     th:alt="${log.mood.moodJa}"
+							     th:title="${log.mood.moodJa}"
+							     width="40" height="40">
 						</td>
+						<!-- ひとことメモ -->
+						<td class="memo-text" th:text="${log.memo}"></td>
+						<!-- メニュー -->
 						<td>
-							<button type="button">•••</button>
-						</td>
+								<!-- 更新 -->
+								<form th:action="@{/records/edit/{id}(id=${log.id})}" method="get" class="inline-form">
+									<button type="submit" class="update-button">更新</button>
+								</form>
+								<!-- 削除 -->
+								<form th:action="@{/records/delete}" method="post" class="inline-form"
+								      onsubmit="return confirm('この記録を削除しますか？');">
+									<input type="hidden" name="id" th:value="${log.id}">
+									<button type="submit" class="delete-button">削除</button>
+								</form>
+							</td>
 					</tr>
 				</tbody>
 			</table>
