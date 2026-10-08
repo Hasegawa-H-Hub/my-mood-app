@@ -7,33 +7,34 @@
 </head>
 
 <body>
+<!-- 画面全体 -->
+
 	<!-- 画面全体 -->
 	<div>
-		<!-- ヘッダー -->
-		<div>
-			<!-- ロゴ -->
-			<h1>My Mood</h1>
-			
-			<!-- 一覧に戻る -->
-			<button type="button"><span>←</span>一覧に戻る</button>
-		</div>
-		
+
+	<!-- ヘッダー -->
+	<header>
+		<!-- ロゴ -->
+		<h1>My Mood</h1>
+		<!-- 一覧に戻る -->
+		<button type="button"><span>←</span>一覧に戻る</button>
+	</header>
+	
+	<!-- メイン -->
+	<main>
 		<!-- フォーム外枠 -->
-		<div>
+		<section>
 			<!-- タイトル -->
 			<h2>新しい記録</h2>
-			
 			<!-- フォーム -->
-			<form th:action="@{/records/save}"
+			<form th:action="@{/records}"
 				  th:object="${logForm}"
 				  method="post">
 			
-								
 				<!-- 気分 -->
 				<div>
 					<!-- ラベル -->
 					<label>気分</label>
-					
 					<!-- 気分ボタン -->
 					<div>
 						<!--Moodテーブルのテータを1件ずつ取り出す-->
@@ -52,7 +53,6 @@
 						</div>
 					</div>
 				</div>
-				
 				<!-- ひとことメモ -->
 				<div>
 					<!-- ラベル -->
@@ -68,7 +68,6 @@
 						<div><span>0</span> / 200</div>
 					</div>
 				</div>
-				
 				<!-- ボタン -->
 				<div>
 					<!-- キャンセル -->
@@ -79,8 +78,7 @@
 					
 				</div>
 			</form>
-		</div>
-		
-	</div>
+		</section>
+	</main>
 </body>
 </html>
