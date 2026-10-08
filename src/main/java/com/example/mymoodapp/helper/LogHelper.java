@@ -4,7 +4,7 @@ import com.example.mymoodapp.entity.Log;
 import com.example.mymoodapp.entity.Mood;
 import com.example.mymoodapp.form.LogForm;
 
-public class Loghelper {
+public class LogHelper {
 
 	//Logへの変換
     public static Log convertToLog(LogForm form) {
