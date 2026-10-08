@@ -37,7 +37,8 @@ public class LogHelper {
        //更新画面の設定
         form.setIsNew(false);
 
-        return form;
+        return form;  
     }
+    
 }
 
