@@ -1,10 +1,7 @@
 package com.example.mymoodapp.controller;
 
-import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,11 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.mymoodapp.entity.Log;
-import com.example.mymoodapp.entity.Mood;
 import com.example.mymoodapp.form.LogForm;
 import com.example.mymoodapp.helper.LogHelper;
 import com.example.mymoodapp.mapper.MoodMapper;
@@ -37,7 +32,8 @@ public class LogController {
     // DI
     private final LogService logService;
     private final MoodMapper moodMapper;
-
+    
+    /* 変更予定のため検索に関わる部分はコメントアウト
     // 記録の一覧を表示する
     @GetMapping
     public String list(
@@ -99,24 +95,33 @@ public class LogController {
 
         return "records";
     }
-
-    // 新規登録画面を表示
-    @GetMapping("/form")
+    */
+    
+    // 記録一覧を表示
+    @GetMapping
+    public String list(Model model) {
+        List<Log> logs = logService.findAllLog();
+        model.addAttribute("logs", logs);
+        return "records";
+    }
+    
+    // 新規登録フォームを表示
+    @GetMapping("/new")
     public String newLog(
             @ModelAttribute LogForm form,
             Model model) {
 
-        // 新規登録画面の設定
+        // 新規登録フォームの設定
         form.setIsNew(true);
 
-        // 気分一覧を画面に渡す
+        // 気分一覧をフォームに渡す
         model.addAttribute("moods", moodMapper.selectAll());
 
-        return "record-form";
+        return "form";
     }
 
     // 新規登録を実行
-    @PostMapping("/save")
+    @PostMapping
     public String create(
             @Validated @ModelAttribute("logForm") LogForm form,
             BindingResult bindingResult,
@@ -126,13 +131,13 @@ public class LogController {
         // バリデーションチェック
         if (bindingResult.hasErrors()) {
 
-            // 新規登録画面の設定
+            // 新規登録フォームの設定
             form.setIsNew(true);
 
-            // 気分一覧を画面に渡す
+            // 気分一覧をフォームに渡す
             model.addAttribute("moods", moodMapper.selectAll());
 
-            return "record-form";
+            return "form";
         }
 
         // FormからEntityへ変換
@@ -151,7 +156,7 @@ public class LogController {
         return "redirect:/records";
     }
 
-    // 指定されたIDの修正画面を表示
+    // 指定されたIDの更新フォームを表示
     @GetMapping("/edit/{id}")
     public String edit(
             @PathVariable Integer id,
@@ -164,15 +169,15 @@ public class LogController {
         if (target != null) {
 
             // EntityからFormへ変換
-            LogForm form = LogHelper.convertToLog(target);
+            LogForm form = LogHelper.convertToLogForm(target);
 
             // モデルに格納
             model.addAttribute("logForm", form);
 
-            // 気分一覧を画面に渡す
+            // 気分一覧をフォームに渡す
             model.addAttribute("moods", moodMapper.selectAll());
 
-            return "record-form";
+            return "form";
 
         } else {
 
@@ -187,7 +192,7 @@ public class LogController {
         }
     }
 
-    // 記録の情報を更新
+    // 記録を更新
     @PostMapping("/update")
     public String update(
             @Validated @ModelAttribute("logForm") LogForm form,
@@ -198,13 +203,13 @@ public class LogController {
         // バリデーションチェック
         if (bindingResult.hasErrors()) {
 
-            // 更新画面の設定
+            // 更新フォームの設定
             form.setIsNew(false);
 
-            // 気分一覧を画面に渡す
+            // 気分一覧をフォームに渡す
             model.addAttribute("moods", moodMapper.selectAll());
 
-            return "record-form";
+            return "form";
         }
 
         // FormからEntityへ変換
@@ -224,7 +229,7 @@ public class LogController {
     }
 
     // 指定されたIDの記録を削除
-    @PostMapping("/delete/{id}")
+    @PostMapping("/delete")
     public String delete(
             @PathVariable Integer id,
             RedirectAttributes attributes) {
