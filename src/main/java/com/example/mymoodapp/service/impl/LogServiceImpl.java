@@ -22,43 +22,43 @@ public class LogServiceImpl implements LogService{
 
     //全記録を取得
     @Override
-    public List<Log> findAllLog() {
+    public List<Log> selectAll() {
         return logMapper.selectAll();
     }
     
     //IDから記録を取得
     @Override
-    public Log findByIdLog(Integer id) {
+    public Log selectById(Integer id) {
         return logMapper.selectById(id);
     }
    
     //新規登録
     @Override
-    public void insertLog(Log log) {
+    public void insert(Log log) {
         logMapper.insert(log);
     }
     
     // 更新
     @Override
-    public void updateLog(Log log) {
+    public void update(Log log) {
         logMapper.update(log);
     }
 
     //削除
     @Override
-    public void deleteLog(Integer id) {
+    public void delete(Integer id) {
         logMapper.delete(id);
     }
     
     //日付検索
     @Override
-    public List<Log> findByDate(LocalDate date) {
+    public List<Log> selectByDate(LocalDate date) {
         return logMapper.selectByDate(date);
     }
 
     //気分で絞り込み
     @Override
-    public List<Log> findByMoodId(Integer moodId) {
+    public List<Log> selectByMoodId(Integer moodId) {
         return logMapper.selectByMoodId(moodId);
     }
     
