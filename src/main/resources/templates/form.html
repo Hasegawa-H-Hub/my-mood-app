@@ -34,6 +34,8 @@
                                  width="40" height="40">
                         </label>
                     </div>
+                    <p th:if="${#fields.hasErrors('moodId')}"
+                       th:errors="*{moodId}" role="alert"></p>
                 </fieldset>
 
                 <div>
@@ -44,6 +46,8 @@
                                   maxlength="200"
                                   placeholder="ここに入力してください"></textarea>
                         <div><span>0</span> / 200</div>
+                        <p th:if="${#fields.hasErrors('memo')}"
+                           th:errors="*{memo}" role="alert"></p>
                     </div>
                 </div>
 
