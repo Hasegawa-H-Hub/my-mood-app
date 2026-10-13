@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.mymoodapp.entity.Log;
@@ -231,7 +232,7 @@ public class LogController {
     // 指定されたIDの記録を削除
     @PostMapping("/delete")
     public String delete(
-            @PathVariable Integer id,
+            @RequestParam("id") Integer id,
             RedirectAttributes attributes) {
 
         // 削除処理
