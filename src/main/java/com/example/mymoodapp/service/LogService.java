@@ -9,23 +9,23 @@ import com.example.mymoodapp.entity.Log;
 public interface LogService {
 
     //全記録を取得
-    List<Log> findAllLog();
+    List<Log> selectAll();
 
     //指定されたIDの記録を取得
-    Log findByIdLog(Integer id);
+    Log selectById(Integer id);
 
     //新規登録
-    void insertLog(Log log);
+    void insert(Log log);
 
     // 更新
-    void updateLog(Log log);
+    void update(Log log);
 
     //削除
-    void deleteLog(Integer id);
+    void delete(Integer id);
     
     //日付検索
-    List<Log> findByDate(LocalDate date);
+    List<Log> selectByDate(LocalDate date);
 
     //気分で絞り込み
-    List<Log> findByMoodId(Integer moodId);
+    List<Log> selectByMoodId(Integer moodId);
 }
