@@ -11,7 +11,7 @@
         <!-- ロゴ -->
         <h1>My Mood</h1>
         <!-- 記録作成ボタン -->
-        <a th:href="@{/records/new}" class="create-button"><span aria-hidden="true">＋</span>記録する</a>
+        <a th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
     </header>
     <!-- メイン -->
     <main>
@@ -24,7 +24,7 @@
         <section>
             <form method="get">
                 <!-- 気分で絞り込み -->
-                <fieldset class="mood-filter">
+                <fieldset>
                     <legend>気分で絞り込み：</legend>
                     <!-- うれしい -->
                     <label>
@@ -58,7 +58,7 @@
                     </label>
                 </fieldset>
                 <!-- 期間で絞り込み -->
-                <div class="date-filter">
+                <div>
                     <label>開始日
                         <input type="date" name="startDate" th:value="${startDate}">
                     </label>
@@ -68,7 +68,7 @@
                     </label>
                 </div>
                 <!-- 並び替え -->
-                <div class="sort-area">
+                <div>
                     <span>並び替え：</span>
                     <select name="sort">
                         <option value="desc" th:selected="${sort == 'desc'}">日付（新しい順）</option>
@@ -76,9 +76,9 @@
                     </select>
                 </div>
                 <!-- 全選択／解除ボタン -->
-                <button type="button" class="toggle-button">全選択／解除</button>
+                <button type="button">全選択／解除</button>
                 <!-- 絞り込みボタン -->
-                <button type="submit" class="filter-button">絞り込み</button>
+                <button type="submit">絞り込み</button>
             </form>
         </section>
         <!--*/-->
@@ -113,17 +113,17 @@
                                  width="40" height="40">
                         </td>
                         <!-- ひとことメモ -->
-                        <td class="memo-text" th:text="${log.memo}"></td>
+                        <td th:text="${log.memo}"></td>
                         <!-- メニュー -->
                         <td>
 							<!-- 更新 -->
-                            <a th:href="@{/records/edit/{id}(id=${log.id})}" class="update-button">更新</a>
+                            <a th:href="@{/records/edit/{id}(id=${log.id})}">更新</a>
 
                             <!-- 削除 -->
-                            <form th:action="@{/records/delete}" method="post" class="inline-form"
+                            <form th:action="@{/records/delete}" method="post"
                                   onsubmit="return confirm('この記録を削除しますか？');">
                                 <input type="hidden" name="id" th:value="${log.id}">
-                                <button type="submit" class="delete-button">削除</button>
+                                <button type="submit">削除</button>
                             </form>
                         </td>
                     </tr>
