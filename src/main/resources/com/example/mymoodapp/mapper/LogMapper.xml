@@ -61,7 +61,7 @@ WHERE l.id = #{id}
 <insert id="insert">
 INSERT INTO log(mood_id, memo, created_at, updated_at)
 VALUES
-(#{mood.id},#{memo},CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)
+(#{mood.id},#{memo},CURRENT_TIMESTAMP,NULL)
 </insert>
 
 <!-- 更新 -->
