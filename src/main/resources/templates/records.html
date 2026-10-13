@@ -98,7 +98,12 @@
                 <tbody>
                     <tr th:each="log : ${logs}">
                         <!-- 日付 -->
-                        <td th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></td>
+                        <td>
+                            <span th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></span>
+                            <br>
+                            <span th:if="${log.updatedAt != null}"
+                                  th:text="|更新：${#temporals.format(log.updatedAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}|"></span>
+                        </td>
                         <!-- 気分 -->
                         <td>
                             <img th:if="${log.mood != null}"
