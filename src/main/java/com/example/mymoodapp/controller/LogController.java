@@ -129,6 +129,17 @@ public class LogController {
             Model model,
             RedirectAttributes attributes) {
 
+        // 気分の種類を固定せず、DBに存在するIDか確認する
+        if (!bindingResult.hasFieldErrors("moodId")
+                && form.getMoodId() != null
+                && moodMapper.selectById(form.getMoodId()) == null) {
+            bindingResult.rejectValue(
+                    "moodId",
+                    "mood.notFound",
+                    "選択された気分がありません。選び直してください"
+            );
+        }
+
         // バリデーションチェック
         if (bindingResult.hasErrors()) {
 
@@ -201,6 +212,28 @@ public class LogController {
             Model model,
             RedirectAttributes attributes) {
 
+        // ID未指定・変換エラー・削除済みの記録は更新しない
+        if (bindingResult.hasFieldErrors("id")
+                || form.getId() == null
+                || logService.selectById(form.getId()) == null) {
+            attributes.addFlashAttribute(
+                    "errorMessage",
+                    "対象データがありません"
+            );
+            return "redirect:/records";
+        }
+
+        // 気分の種類を固定せず、DBに存在するIDか確認する
+        if (!bindingResult.hasFieldErrors("moodId")
+                && form.getMoodId() != null
+                && moodMapper.selectById(form.getMoodId()) == null) {
+            bindingResult.rejectValue(
+                    "moodId",
+                    "mood.notFound",
+                    "選択された気分がありません。選び直してください"
+            );
+        }
+
         // バリデーションチェック
         if (bindingResult.hasErrors()) {
 
@@ -232,8 +265,17 @@ public class LogController {
     // 指定されたIDの記録を削除
     @PostMapping("/delete")
     public String delete(
-            @RequestParam("id") Integer id,
+            @RequestParam(value = "id", required = false) Integer id,
             RedirectAttributes attributes) {
+
+        // ID未指定・削除済みの記録は削除しない
+        if (id == null || logService.selectById(id) == null) {
+            attributes.addFlashAttribute(
+                    "errorMessage",
+                    "対象データがありません"
+            );
+            return "redirect:/records";
+        }
 
         // 削除処理
         logService.delete(id);
