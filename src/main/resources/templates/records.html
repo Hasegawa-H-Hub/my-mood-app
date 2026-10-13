@@ -2,7 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>記録一覧画面</title>
+    <title>記録一覧 | My Mood</title>
 </head>
 <!-- 画面全体 -->
 <body>
@@ -111,7 +111,8 @@
                         <td class="memo-text" th:text="${log.memo}"></td>
                         <!-- メニュー -->
                         <td>
-                            <a th:href="@{/records/edit/{id}(id=${log.id})}" class="update-button">編集</a>
+							<!-- 更新 -->
+                            <a th:href="@{/records/edit/{id}(id=${log.id})}" class="update-button">更新</a>
 
                             <!-- 削除 -->
                             <form th:action="@{/records/delete}" method="post" class="inline-form"
