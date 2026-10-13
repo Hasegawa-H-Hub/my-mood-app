@@ -54,15 +54,15 @@ public class LogController {
 
         // 日付で検索
         if (date != null) {
-            logs = logService.findByDate(date);
+            logs = logService.selectByDate(date);
 
         // 気分で検索
         } else if (mood != null) {
-            logs = logService.findByMood(mood);
+            logs = logService.selectByMoodId(moodId);
 
         // 全件検索
         } else {
-            logs = logService.findAllLog();
+            logs = logService.selectAll();
         }
 
         // 並び順を設定
@@ -100,7 +100,7 @@ public class LogController {
     // 記録一覧を表示
     @GetMapping
     public String list(Model model) {
-        List<Log> logs = logService.findAllLog();
+        List<Log> logs = logService.selectAll();
         model.addAttribute("logs", logs);
         return "records";
     }
@@ -144,7 +144,7 @@ public class LogController {
         Log log = LogHelper.convertToLog(form);
 
         // 登録実行
-        logService.insertLog(log);
+        logService.insert(log);
 
         // フラッシュメッセージ
         attributes.addFlashAttribute(
@@ -164,7 +164,7 @@ public class LogController {
             RedirectAttributes attributes) {
 
         // IDに対応する記録を取得
-        Log target = logService.findByIdLog(id);
+        Log target = logService.selectById(id);
 
         if (target != null) {
 
@@ -216,7 +216,7 @@ public class LogController {
         Log log = LogHelper.convertToLog(form);
 
         // 更新処理
-        logService.updateLog(log);
+        logService.update(log);
 
         // フラッシュメッセージ
         attributes.addFlashAttribute(
@@ -235,7 +235,7 @@ public class LogController {
             RedirectAttributes attributes) {
 
         // 削除処理
-        logService.deleteLog(id);
+        logService.delete(id);
 
         // フラッシュメッセージ
         attributes.addFlashAttribute(
