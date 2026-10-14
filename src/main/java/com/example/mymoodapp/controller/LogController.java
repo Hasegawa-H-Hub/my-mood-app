@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.mymoodapp.entity.Log;
+import com.example.mymoodapp.entity.Mood;
 import com.example.mymoodapp.form.LogForm;
+import com.example.mymoodapp.form.LogSearchForm;
 import com.example.mymoodapp.helper.LogHelper;
 import com.example.mymoodapp.mapper.MoodMapper;
 import com.example.mymoodapp.service.LogService;
@@ -34,75 +36,52 @@ public class LogController {
     private final LogService logService;
     private final MoodMapper moodMapper;
     
-    /* 変更予定のため検索に関わる部分はコメントアウト
-    // 記録の一覧を表示する
-    @GetMapping
-    public String list(
-            @RequestParam(required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            LocalDate date,
-
-            @RequestParam(required = false)
-            Mood mood,
-
-            @RequestParam(defaultValue = "desc")
-            String sort,
-
-            Model model) {
-
-        // 記録を取得する
-        List<Log> logs;
-
-        // 日付で検索
-        if (date != null) {
-            logs = logService.selectByDate(date);
-
-        // 気分で検索
-        } else if (mood != null) {
-            logs = logService.selectByMoodId(moodId);
-
-        // 全件検索
-        } else {
-            logs = logService.selectAll();
-        }
-
-        // 並び順を設定
-        if ("asc".equals(sort)) {
-            logs.sort(
-                    Comparator.comparing(
-                            Log::getCreatedAt,
-                            Comparator.nullsLast(
-                                    Comparator.naturalOrder()
-                            )
-                    )
-            );
-        } else {
-            logs.sort(
-                    Comparator.comparing(
-                            Log::getCreatedAt,
-                            Comparator.nullsLast(
-                                    Comparator.reverseOrder()
-                            )
-                    )
-            );
-        }
-
-        // モデルに格納
-        model.addAttribute("logs", logs);
-        model.addAttribute("moods", moodMapper.selectAll());
-        model.addAttribute("date", date);
-        model.addAttribute("mood", mood);
-        model.addAttribute("sort", sort);
-
-        return "records";
-    }
-    */
-    
     // 記録一覧を表示
     @GetMapping
-    public String list(Model model) {
-        List<Log> logs = logService.selectAll();
+    public String list(
+            @ModelAttribute("searchForm") LogSearchForm form,
+            BindingResult bindingResult,
+            Model model) {
+ 
+        List<Mood> moods = moodMapper.selectAll();
+ 
+        // 初期表示（検索前）は全気分を選択状態にする
+        if (!form.isSearched() && !bindingResult.hasErrors()) {
+            form.setMoodIds(moods.stream().map(Mood::getId).toList());
+            form.setStartDate(null);
+            form.setEndDate(null);
+            form.setSort("desc");
+        }
+ 
+        // 並び順は asc / desc のみ許可
+        form.setSort("asc".equals(form.getSort()) ? "asc" : "desc");
+ 
+        // 開始日が終了日より後ならエラー
+        if (!bindingResult.hasFieldErrors("startDate")
+                && !bindingResult.hasFieldErrors("endDate")
+                && form.getStartDate() != null
+                && form.getEndDate() != null
+                && form.getStartDate().isAfter(form.getEndDate())) {
+ 
+            bindingResult.rejectValue("endDate", "dateRange.invalid",
+                    "開始日は終了日以前にしてください");
+        }
+ 
+        // エラー時はServiceを呼ばず、結果部分を非表示にする
+        boolean searchPerformed = !bindingResult.hasErrors();
+ 
+        List<Log> logs = List.of();
+ 
+        if (searchPerformed) {
+            logs = logService.search(
+                    form.getMoodIds(), form.getStartDate(),
+                    form.getEndDate(), form.getSort());
+        }
+ 
+        model.addAttribute("moods", moods);
         model.addAttribute("logs", logs);
+        model.addAttribute("searchPerformed", searchPerformed);
+ 
         return "records";
     }
     
