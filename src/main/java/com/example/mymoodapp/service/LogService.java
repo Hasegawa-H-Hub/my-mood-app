@@ -23,12 +23,6 @@ public interface LogService {
 	//削除
 	void delete(Integer id);
 
-	//日付検索
-	List<Log> selectByDate(LocalDate date);
-
-	//気分で絞り込み
-	List<Log> selectByMoodId(Integer moodId);
-
 	//条件を指定して検索
 	List<Log> search(
 			List<Integer> moodIds,
