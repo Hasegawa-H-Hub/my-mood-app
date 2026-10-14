@@ -26,7 +26,7 @@ public interface LogMapper {
 	// 削除
 	void delete(@Param("id") Integer id);
 
-	// 検索条件を指定して絞り込み 
+	// 検索条件を指定して絞り込み
 	List<Log> search(
 			@Param("moodIds") List<Integer> moodIds,
 			@Param("startDate") LocalDate startDate,
