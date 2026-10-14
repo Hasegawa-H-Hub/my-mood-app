@@ -61,5 +61,21 @@ public class LogServiceImpl implements LogService{
     public List<Log> selectByMoodId(Integer moodId) {
         return logMapper.selectByMoodId(moodId);
     }
-    
+    //気分・期間・並び順で検索
+    @Override
+    public List<Log> search(
+            List<Integer> moodIds,
+            LocalDate startDate,
+            LocalDate endDate,
+            String sort) {
+ 
+        // 気分が全解除なら、Mapperを呼ばず空の結果を返す
+        if (moodIds == null || moodIds.isEmpty()) {
+            return List.of();
+        }
+ 
+        return logMapper.search(moodIds, startDate, endDate, sort);
+    }
+ 
 }
+ 
