@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+//検索条件絞り込みのForm
+
 public class LogSearchForm {
 	private List<Integer> moodIds = new ArrayList<>();
 
