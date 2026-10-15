@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>記録一覧 | My Mood</title>
+	<link rel="stylesheet" href="style_master_records_updated.css">
 </head>
 <!-- 画面全体 -->
 <body>
     <!-- ヘッダー -->
     <header>
         <!-- ロゴ -->
-        <h1>My Mood</h1>
+        <h1 class="logo">My Mood</h1>
         <!-- 記録作成ボタン -->
-        <a th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
+        <a th:href="@{/records/new}" class="record-button"><span class="plus" aria-hidden="true">＋</span>記録する</a>
     </header>
     <!-- メイン -->
     <main>
@@ -21,8 +22,8 @@
         <!-- 絞り込み・並び替えは後日実装するため、一時的に無効化 -->
         <!--/*-->
         <!-- 絞り込み・並び替え -->
-        <section>
-            <form method="get">
+        <section class="filter-section">
+            <form class="filter-form" method="get">
                 <!-- 気分で絞り込み -->
                 <fieldset>
                     <legend>気分で絞り込み：</legend>
@@ -68,9 +69,9 @@
                     </label>
                 </div>
                 <!-- 並び替え -->
-                <div>
-                    <span>並び替え：</span>
-                    <select name="sort">
+                <div class="sort-area">
+                    <span class="filter-label">並び替え：</span>
+                    <select class="sort-select" name="sort">
                         <option value="desc" th:selected="${sort == 'desc'}">日付（新しい順）</option>
                         <option value="asc" th:selected="${sort == 'asc'}">日付（古い順）</option>
                     </select>
@@ -84,15 +85,15 @@
         <!--*/-->
 
         <!-- 記録一覧 -->
-        <section>
+        <section class="list-section">
             <p th:if="${#lists.isEmpty(logs)}">記録はまだありません</p>
-            <table th:unless="${#lists.isEmpty(logs)}" border="1">
+            <table class="mood-table" th:unless="${#lists.isEmpty(logs)}" border="1">
                 <thead>
                     <tr>
-                        <th scope="col">日付</th>
-                        <th scope="col">気分</th>
-                        <th scope="col">ひとことメモ</th>
-                        <th scope="col">メニュー</th>
+                        <th class="date-column" scope="col">日付</th>
+                        <th class="mood-column" scope="col">気分</th>
+                        <th class="memo-column" scope="col">ひとことメモ</th>
+                        <th class="menu-column" scope="col">メニュー</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -113,7 +114,7 @@
                                  width="40" height="40">
                         </td>
                         <!-- ひとことメモ -->
-                        <td th:text="${log.memo}"></td>
+                        <td class="memo" th:text="${log.memo}"></td>
                         <!-- メニュー -->
                         <td>
 							<!-- 更新 -->

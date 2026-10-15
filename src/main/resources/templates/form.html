@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${logForm.isNew} ? '新しい記録 | My Mood' : '記録を編集 | My Mood'">記録フォーム画面</title>
+	<link rel="stylesheet" href="style_master_updated.css">
 </head>
 <body>
     <header>
-        <h1>My Mood</h1>
-        <a th:href="@{/records}"><span aria-hidden="true">←</span>一覧に戻る</a>
+        <h1 class="logo">My Mood</h1>
+        <a class="back-button" th:href="@{/records}"><span class="left-arrow" aria-hidden="true">←</span>一覧に戻る</a>
     </header>
 
     <main>
-        <section>
-            <h2 th:text="${logForm.isNew} ? '新しい記録' : '記録を編集'">新しい記録</h2>
+        <section class="form-card">
+            <h2 class="form-title" th:text="${logForm.isNew} ? '新しい記録' : '記録を編集'">新しい記録</h2>
 
             <form th:action="${logForm.isNew} ? @{/records} : @{/records/update}"
                   th:object="${logForm}"
@@ -38,22 +39,22 @@
                        th:errors="*{moodId}" role="alert"></p>
                 </fieldset>
 
-                <div>
+                <div class="form-row memo-row">
                     <label for="memo">ひとことメモ</label>
-                    <div>
+                    <div class="memo-control">
                         <textarea id="memo"
                                   th:field="*{memo}"
                                   maxlength="200"
                                   placeholder="ここに入力してください"></textarea>
-                        <div><span>0</span> / 200</div>
+                        <div class="character-count"><span>0</span> / 200</div>
                         <p th:if="${#fields.hasErrors('memo')}"
                            th:errors="*{memo}" role="alert"></p>
                     </div>
                 </div>
 
-                <div>
-                    <a th:href="@{/records}">キャンセル</a>
-                    <button type="submit">保存する</button>
+                <div class="form-actions">
+                    <a th:href="@{/records}" class="cancel-button">キャンセル</a>
+                    <button type="submit" class="save-button">保存する</button>
                 </div>
             </form>
         </section>
