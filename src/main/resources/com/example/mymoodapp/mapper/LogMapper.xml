@@ -75,23 +75,6 @@ updated_at = CURRENT_TIMESTAMP WHERE id = #{id}
 DELETE FROM log WHERE id = #{id}
 </delete>
 
-<!-- 日付検索 -->
-<select id="selectByDate" resultMap="logWithMoodResult">
-<include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
-<![CDATA[
-WHERE created_at >= #{date}
-AND created_at < (CAST(#{date} AS date) + INTERVAL '1 day')
-ORDER BY created_at DESC, l.id DESC
-]]>
-</select>
-
-<!-- 気分で絞り込み -->
-<select id="selectByMoodId" resultMap="logWithMoodResult">
- <include refid = "selectLogWithMoodName"/> <!-- 共通のSQLテンプレートを呼び出し --> 
-WHERE mood_id = #{moodid}
-ORDER BY created_at DESC, l.id DESC
-</select>
-
 <!-- 気分・期間・並び順で検索 -->
 <select id="search" resultMap="logWithMoodResult">
     <include refid="selectLogWithMoodName"/>
