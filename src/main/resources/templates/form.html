@@ -44,7 +44,8 @@
                         <textarea id="memo"
                                   th:field="*{memo}"
                                   maxlength="200"
-                                  placeholder="ここに入力してください"></textarea>
+                                  placeholder="ここに入力してください"
+								  required></textarea>
                         <div><span>0</span> / 200</div>
                         <p th:if="${#fields.hasErrors('memo')}"
                            th:errors="*{memo}" role="alert"></p>
