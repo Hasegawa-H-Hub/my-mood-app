@@ -6,8 +6,14 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//検索条件絞り込みのForm
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+//検索条件絞り込みのForm
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LogSearchForm {
 	private List<Integer> moodIds = new ArrayList<>();
 
@@ -19,6 +25,6 @@ public class LogSearchForm {
 
 	private String sort = "desc";
 
-	private boolean searched;
+	private boolean isSearched;
 
 }

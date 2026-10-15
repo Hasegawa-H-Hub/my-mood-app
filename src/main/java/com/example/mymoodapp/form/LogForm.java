@@ -1,7 +1,9 @@
 package com.example.mymoodapp.form;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +21,11 @@ public class LogForm {
     @NotNull(message = "気分を選択してください")
     private Integer moodId;
 
-    // 空欄は許可するが、DBのNOT NULL制約に合わせてnullは受け付けない
-    @NotNull(message = "ひとことメモの入力値を確認してください")
+    // ひとことメモは必須入力、最大200文字
+    @NotBlank(message = "ひとことメモを入力してください")
     @Size(max = 200, message = "ひとことメモは200文字以内で入力してください")
     private String memo;
 
     // 新規判定
-    private Boolean isNew;
+    private boolean isNew;
 }

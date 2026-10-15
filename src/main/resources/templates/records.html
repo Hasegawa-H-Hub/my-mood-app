@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
+	
 <head>
     <meta charset="UTF-8">
     <title>記録一覧 | My Mood</title>
@@ -7,6 +8,7 @@
 	<!-- 全選択・全解除用JavaScript -->
 	<script th:src="@{/js/records_script.js}" defer></script>
 </head>
+
 <!-- 画面全体 -->
 <body>
     <!-- ヘッダー -->
@@ -16,6 +18,7 @@
         <!-- 記録作成ボタン -->
         <a th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
     </header>
+	
     <!-- メイン -->
     <main>
 		<!-- 登録・更新・削除などのメッセージ -->
@@ -82,9 +85,8 @@
             <p th:if="${#lists.isEmpty(logs)}">
                 該当する記録はありません
             </p>
+			
         <!-- 記録一覧 -->
-        <section>
-            <p th:if="${#lists.isEmpty(logs)}">記録はまだありません</p>
             <table th:unless="${#lists.isEmpty(logs)}" border="1">
                 <thead>
                     <tr>

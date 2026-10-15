@@ -92,7 +92,7 @@ public class LogController {
             Model model) {
 
         // 新規登録フォームの設定
-        form.setIsNew(true);
+        form.setNew(true);
 
         // 気分一覧をフォームに渡す
         model.addAttribute("moods", moodMapper.selectAll());
@@ -123,7 +123,7 @@ public class LogController {
         if (bindingResult.hasErrors()) {
 
             // 新規登録フォームの設定
-            form.setIsNew(true);
+            form.setNew(true);
 
             // 気分一覧をフォームに渡す
             model.addAttribute("moods", moodMapper.selectAll());
@@ -217,7 +217,7 @@ public class LogController {
         if (bindingResult.hasErrors()) {
 
             // 更新フォームの設定
-            form.setIsNew(false);
+            form.setNew(false);
 
             // 気分一覧をフォームに渡す
             model.addAttribute("moods", moodMapper.selectAll());

@@ -35,7 +35,7 @@ public class LogHelper {
         form.setMoodId(log.getMood().getId());
 
        //更新画面の設定
-        form.setIsNew(false);
+        form.setNew(false);
 
         return form;
     }  
