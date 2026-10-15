@@ -8,6 +8,8 @@
     <header>
         <h1>My Mood</h1>
         <a th:href="@{/records}"><span aria-hidden="true">←</span>一覧に戻る</a>
+		
+		<script th:src="@{/js/form_script.js}" defer></script>
     </header>
 
     <main>
@@ -40,13 +42,16 @@
 
                 <div>
                     <label for="memo">ひとことメモ</label>
+					
                     <div>
                         <textarea id="memo"
                                   th:field="*{memo}"
                                   maxlength="200"
                                   placeholder="ここに入力してください"
 								  required></textarea>
-                        <div><span>0</span> / 200</div>
+								  
+                        <div><span id="memo-count">0</span> / 200</div>
+						
                         <p th:if="${#fields.hasErrors('memo')}"
                            th:errors="*{memo}" role="alert"></p>
                     </div>
