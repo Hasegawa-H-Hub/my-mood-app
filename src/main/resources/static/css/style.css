@@ -63,7 +63,8 @@ textarea {
     background: var(--color-surface);
 }
 
-:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+:where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.mood-choice:has(input:focus-visible) {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
 }
@@ -355,13 +356,14 @@ textarea {
 }
 
 .mood-fieldset {
-    min-width: 0;
-    padding: 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-control);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+    border: none;
 
     & > legend {
-        padding-inline: 0.5rem;
+		float: left;
+		flex: 0 1 12rem;
         font-size: 1.25rem;
         font-weight: 700;
     }
@@ -373,9 +375,17 @@ textarea {
 }
 
 .mood-choice {
-    min-height: 5.5rem;
     padding: 0.75rem;
 
+    /* ラジオボタンを視覚的に隠す */
+    & input[type="radio"] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+    }
+
+    /* 気分アイコン */
     & img {
         width: 3.5rem;
         height: 3.5rem;
