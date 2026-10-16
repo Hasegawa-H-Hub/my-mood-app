@@ -28,12 +28,4 @@ public class LogForm {
 
     // 新規判定
     private boolean isNew;
-    
-    // 改行コードをLFに統一する
-    public void setMemo(String memo) {
-        this.memo = memo == null
-                ? null
-                : memo.replace("\r\n", "\n")
-                      .replace('\r', '\n');
-    }
 }
