@@ -52,12 +52,15 @@
                     </div>
 
                     <fieldset class="filter-fieldset" id="moodFilter">
-                        <legend>気分で絞り込み：</legend>
+                        <legend>気分で絞り込み</legend>
 
                         <label class="filter-choice" th:each="mood : ${moods}">
-                            <input type="checkbox" th:field="*{moodIds}"
-                                th:value="${mood.id}">
-                            <span th:text="${mood.moodJa}"></span>
+                            <input type="checkbox" th:field="*{moodIds}" th:value="${mood.id}">
+							<img class="mood-icon" th:if="${mood != null}"
+							    th:src="@{|/images/mood/${mood.moodName}.svg|}"
+							    th:alt="${mood.moodJa}"
+							    th:title="${mood.moodJa}"
+							    width="40" height="40">
                         </label>
                     </fieldset>
 
@@ -78,7 +81,7 @@
                             </div>
                         </div>
                         <div class="search-field">
-                            <label for="sort">並び替え：</label>
+                            <label for="sort">並び替え</label>
                             <select th:field="*{sort}">
                                 <option value="desc">日付（新しい順）</option>
                                 <option value="asc">日付（古い順）</option>
