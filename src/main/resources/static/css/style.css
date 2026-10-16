@@ -1,4 +1,4 @@
-/* 共通設定。入れ子は部品ごとに1段までとする。 */
+/* 共通設定 */
 :root {
     --color-main: #acbda1;
     --color-surface: #fdfafa;
@@ -107,8 +107,7 @@ textarea {
 }
 
 .button-primary {
-    /* 淡い緑の背景には、読みやすい濃色の文字を使う。 */
-    color: #17291d;
+    color: var(--color-surface);
     background: #7f9581;
 
     &:hover {
@@ -335,7 +334,7 @@ textarea {
     text-align: center;
 }
 
-/* 記録フォーム：日付入力は作らず、現在の入力項目に合わせる。 */
+/* 記録フォーム */
 .form-card {
     max-width: 72rem;
     margin-inline: auto;
