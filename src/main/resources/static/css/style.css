@@ -1,12 +1,7 @@
 /* 共通設定。入れ子は部品ごとに1段までとする。 */
 :root {
-    --color-background: #f5f4ed;
     --color-main: #acbda1;
-    --color-primary: #7f9581;
-    --color-primary-hover: #6d846f;
     --color-surface: #fdfafa;
-    /* 淡い緑のボタンには、読みやすい濃色の文字を使う。 */
-    --color-on-primary: #17291d;
     --color-text: #273d3b;
     --color-muted: #59695e;
     --color-border: #bcc9b9;
@@ -15,8 +10,6 @@
     --color-error: #963e38;
     --color-error-surface: #fff1ef;
     --radius-control: 0.75rem;
-    --radius-panel: 1.75rem;
-    --shadow-panel: 0 0.5rem 1.75rem rgb(45 65 49 / 8%);
 }
 
 *,
@@ -29,9 +22,9 @@
 
 body {
     min-height: 100vh;
-    padding: 1.5rem clamp(1rem, 3vw, 3rem) 3rem;
+    padding: 1.5rem 2rem 3rem;
     color: var(--color-text);
-    background: var(--color-background);
+    background: #f5f4ed;
     font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
     line-height: 1.6;
 }
@@ -87,7 +80,7 @@ textarea {
 }
 
 .logo {
-    font-size: clamp(2rem, 4vw, 3.625rem);
+    font-size: 3.5rem;
     line-height: 1.2;
     letter-spacing: 0.02em;
 }
@@ -114,11 +107,12 @@ textarea {
 }
 
 .button-primary {
-    color: var(--color-on-primary);
-    background: var(--color-primary);
+    /* 淡い緑の背景には、読みやすい濃色の文字を使う。 */
+    color: #17291d;
+    background: #7f9581;
 
     &:hover {
-        background: var(--color-primary-hover);
+        background: #6d846f;
     }
 }
 
@@ -175,10 +169,14 @@ textarea {
 .filter-section,
 .list-section,
 .form-card {
-    padding: clamp(1rem, 2.5vw, 2rem);
-    border-radius: var(--radius-panel);
+    border-radius: 1.75rem;
     background: var(--color-surface);
-    box-shadow: var(--shadow-panel);
+    box-shadow: 0 0.5rem 1.75rem rgb(45 65 49 / 8%);
+}
+
+.filter-section,
+.list-section {
+    padding: 2rem;
 }
 
 .filter-form {
@@ -225,11 +223,6 @@ textarea {
         border-color: var(--color-focus);
         background: var(--color-soft);
     }
-
-    &:has(input:focus-visible) {
-        outline: 3px solid var(--color-focus);
-        outline-offset: 3px;
-    }
 }
 
 .filter-choice {
@@ -251,10 +244,8 @@ textarea {
     gap: 1rem 1.5rem;
 }
 
-.search-field {
-    & > label {
-        font-weight: 700;
-    }
+.search-field > label {
+    font-weight: 700;
 }
 
 /* 一覧：狭い画面では表だけ横スクロールできる。 */
@@ -348,14 +339,14 @@ textarea {
 .form-card {
     max-width: 72rem;
     margin-inline: auto;
-    padding: clamp(1.25rem, 4vw, 3.5rem);
+    padding: 3rem;
 }
 
 .form-title {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
     border-bottom: 2px solid var(--color-main);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-size: 2.5rem;
     line-height: 1.4;
 }
 

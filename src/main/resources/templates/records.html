@@ -111,7 +111,7 @@
                         <tbody>
                             <tr th:each="log : ${logs}">
                                 <!-- 日付 -->
-                                <td class="record-date">
+                                <td>
                                     <span th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></span>
                                     <span class="updated-date" th:if="${log.updatedAt != null}"
                                         th:text="|更新：${#temporals.format(log.updatedAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}|"></span>
