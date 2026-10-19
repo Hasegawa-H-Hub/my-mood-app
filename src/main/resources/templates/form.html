@@ -3,18 +3,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" th:href="@{/css/style.css}">
-        <title th:text="${logForm.isNew()} ? '新しい記録 | My Mood' : '記録を編集 | My Mood'">記録フォーム画面</title>
-        <script th:src="@{/js/form_script.js}" defer></script>
+        
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+        
+		<title th:text="${logForm.isNew()} ? '新しい記録 | My Mood' : '記録を編集 | My Mood'">記録フォーム画面</title>
+        
+		<script th:src="@{/js/form_script.js}" defer></script>
     </head>
     <body class="form-page">
         <header class="site-header">
-            <h1 class="logo">My Mood</h1>
+            <h1 class="logo m-plus-rounded-1c-bold">My Mood</h1>
         </header>
 
         <main class="main-content">
             <section class="form-card">
-                <h2 class="form-title" th:text="${logForm.isNew()} ? '新しい記録' : '記録を編集'">新しい記録</h2>
+                <h2 class="form-title m-plus-rounded-1c-bold" th:text="${logForm.isNew()} ? '新しい記録' : '記録を編集'">新しい記録</h2>
 
                 <form class="record-form" th:action="${logForm.isNew()} ? @{/records} : @{/records/update}"
                     th:object="${logForm}"
