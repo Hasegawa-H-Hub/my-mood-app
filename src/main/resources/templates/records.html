@@ -21,7 +21,9 @@
         <!-- ヘッダー -->
         <header class="site-header">
             <!-- ロゴ -->
-            <h1 class="logo m-plus-rounded-1c-bold">My Mood</h1>
+            <h1>
+				<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+			</h1>
             <!-- 記録作成ボタン -->
             <a class="button button-primary" th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
         </header>
