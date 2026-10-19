@@ -3,31 +3,28 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px"
 	 height="800px" viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
 <style type="text/css">
-	.st0{display:none;}
-	.st1{fill:url(#SVGID_1_);}
-	.st2{opacity:0.56;}
-	.st3{opacity:0.8902;fill:#3C2107;}
-	.st4{opacity:0.8784;fill:#3C2107;}
-	.st5{fill:#ED8170;}
-	.st6{opacity:0.8902;}
-	.st7{fill:#FFD56F;}
-	.st8{fill:url(#SVGID_00000096771884425449040400000006763775389612042124_);}
-	.st9{fill:none;stroke:#643321;stroke-width:30;stroke-linecap:round;}
-	.st10{opacity:0.8784;}
-	.st11{fill:#4E1F11;}
-	.st12{fill:url(#SVGID_00000033370713230338883360000013733515250680946840_);}
-	.st13{fill:#28485B;}
-	.st14{fill:none;stroke:#28485B;stroke-width:30;stroke-linecap:round;}
-	.st15{fill:url(#SVGID_00000127763452676745635750000000097186754207201456_);}
-	.st16{fill:#3E3979;}
+	.st0{fill:url(#SVGID_1_);}
+	.st1{opacity:0.56;}
+	.st2{opacity:0.8902;fill:#3C2107;}
+	.st3{opacity:0.8784;fill:#3C2107;}
+	.st4{fill:#ED8170;}
+	.st5{opacity:0.8902;}
+	.st6{fill:#FFD56F;}
+	.st7{fill:url(#SVGID_00000137816935418606268460000008941940753176853691_);}
+	.st8{opacity:0.8784;}
+	.st9{fill:#4E1F11;}
+	.st10{fill:none;stroke:#643321;stroke-width:30;stroke-linecap:round;}
+	.st11{fill:url(#SVGID_00000075147253742776570480000010461229189083325371_);}
+	.st12{fill:#28485B;}
+	.st13{fill:none;stroke:#28485B;stroke-width:30;stroke-linecap:round;}
+	.st14{fill:url(#SVGID_00000026156772689906566420000002090310025638956217_);}
+	.st15{fill:#3E3979;}
+	.st16{fill:none;stroke:#3E3979;stroke-width:30;stroke-linecap:round;}
 	.st17{fill:#28A9E0;}
-	.st18{fill:none;stroke:#3E3979;stroke-width:30;stroke-linecap:round;}
-	.st19{fill:url(#SVGID_00000151539487703910779460000014323615026361412526_);}
+	.st18{fill:url(#SVGID_00000130615675502569753250000003278481667244735367_);}
+	.st19{fill:#9E1717;}
 	.st20{fill:none;stroke:#9E1717;stroke-width:30;stroke-linecap:round;}
-	.st21{fill:#9E1717;}
 </style>
-<g id="レイヤー_6" class="st0">
-</g>
 <g id="happy">
 </g>
 <g id="fun">
@@ -40,13 +37,16 @@
 		<stop  offset="0" style="stop-color:#DCD6FA"/>
 		<stop  offset="1" style="stop-color:#C7C1EF"/>
 	</linearGradient>
-	<circle class="st1" cx="400" cy="406.19" r="315"/>
+	<circle class="st0" cx="400" cy="406.19" r="315"/>
 	<g>
-		<circle class="st16" cx="287.38" cy="352.4" r="36.22"/>
-		<circle class="st16" cx="517.43" cy="352.4" r="36.23"/>
+		<circle class="st15" cx="287.38" cy="352.4" r="36.22"/>
+		<circle class="st15" cx="517.43" cy="352.4" r="36.23"/>
 	</g>
-	<path class="st17" d="M553.44,388.62c47.13,52.47,43.68,115.01,0,115.01S507.43,439.85,553.44,388.62z"/>
-	<path class="st18" d="M258.25,547.94c94.5-84,189-84,283.5,0"/>
+	<path class="st16" d="M497.6,520.03L497.6,520.03c-20.13-23.94-57.33-38.69-97.6-38.69h0c-40.26,0-77.46,14.75-97.6,38.69l0,0"/>
+	<g>
+		<path class="st17" d="M572.19,467.95c1.11,24.24-12.26,34.94-28.67,35c-16.41-0.06-29.78-10.76-28.67-35
+			c2.31-23.43,29.66-87.77,28.15-87.73C541.39,380.11,569.8,444.54,572.19,467.95z"/>
+	</g>
 </g>
 <g id="angry">
 </g>
