@@ -414,11 +414,13 @@ textarea {
     min-width: 0;
 
     & textarea {
-        display: block;
-        width: 100%;
-        min-height: 10rem;
-        resize: vertical;
-        line-height: 1.6;
+		display: block;
+		width: 100%;
+		min-height: 8rem;
+		max-height: 70vh;
+		field-sizing: content;
+		resize: none;
+		line-height: 1.6;
     }
 
     & textarea::placeholder {
