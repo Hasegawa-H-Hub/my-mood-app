@@ -180,14 +180,14 @@ textarea {
 }
 
 .filter-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1.25rem;
+    display: grid;
+    /* 操作欄の幅を確保し、残りの幅を気分アイコン欄に割り当てる。 */
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 1rem;
 }
 
 .search-errors {
-    flex-basis: 100%;
+    grid-column: 1 / -1;
     margin-bottom: 0;
 }
 
@@ -197,8 +197,15 @@ textarea {
 
     & > legend {
         padding-inline: 0.5rem;
-        font-weight: 700;
     }
+}
+
+.filter-options {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(max-content, 1fr);
+    justify-items: center;
+    gap: 0.5rem;
 }
 
 .filter-choice,
@@ -207,11 +214,20 @@ textarea {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.65rem 0.75rem;
+    padding: 0.75rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-control);
     background: var(--color-surface);
     cursor: pointer;
+	
+	/* ラジオボタンを視覚的に隠す */
+	& input[type="checkbox"],
+	& input[type="radio"] {
+	    position: absolute;
+	    width: 1px;
+	    height: 1px;
+	    opacity: 0;
+	}
 
     &:hover {
         background: var(--color-soft);
@@ -224,7 +240,23 @@ textarea {
 }
 
 .filter-choice {
-    margin: 0.25rem;
+    margin: 0;
+	
+	/* 気分アイコン */
+	& img {
+	    width: 3rem;
+	    height: 3rem;
+	    object-fit: contain;
+	}
+}
+
+.mood-choice {
+	/* 気分アイコン */
+	& img {
+	    width: 3.5rem;
+	    height: 3.5rem;
+	    object-fit: contain;
+	}
 }
 
 .filter-actions,
@@ -232,23 +264,87 @@ textarea {
 .date-range,
 .search-field {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.75rem;
 }
 
 .search-controls {
-    flex-basis: 100%;
-    gap: 1rem 1.5rem;
+    gap: 1.5rem;
+}
+
+.filter-form .button {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.search-field input[type="date"] {
+    width: 10.5rem;
+}
+
+.search-field select {
+    width: 11.5rem;
 }
 
 .search-field {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
-
+s
     & > label {
         font-weight: 700;
+    }
+}
+
+.filter-buttons {
+	margin-top: 1.75rem;
+}
+
+/* ノートPC相当の幅では、画像サイズを変えずに検索欄の余白を詰める。 */
+@media (max-width: 96rem) {
+    .filter-section {
+        padding-inline: 1rem;
+    }
+
+    .filter-form,
+    .search-controls {
+        gap: 0.75rem;
+    }
+
+    .filter-actions,
+    .date-range {
+        gap: 0.5rem;
+    }
+
+    .filter-form .button {
+        padding-inline: 0.625rem;
+    }
+
+    .search-field input[type="date"] {
+        width: 9rem;
+        padding-inline: 0.5rem;
+    }
+
+    .search-field select {
+        width: 11rem;
+        padding-inline: 0.5rem;
+    }
+}
+
+/* 1280px未満では検索操作欄を次の行へ移し、無理に縮めない。 */
+@media (max-width: 79.99rem) {
+    .filter-form {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .search-controls {
+        grid-column: 1 / -1;
+        flex-wrap: wrap;
+    }
+
+    .filter-options {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fit, minmax(4.75rem, 1fr));
     }
 }
 
@@ -376,25 +472,6 @@ textarea {
 .mood-option {
     display: inline-block;
     margin: 0.35rem;
-}
-
-.mood-choice {
-    padding: 0.75rem;
-
-    /* ラジオボタンを視覚的に隠す */
-    & input[type="radio"] {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-    }
-
-    /* 気分アイコン */
-    & img {
-        width: 3.5rem;
-        height: 3.5rem;
-        object-fit: contain;
-    }
 }
 
 .memo-row {
