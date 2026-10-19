@@ -183,7 +183,6 @@ textarea {
     display: grid;
     /* 操作欄の幅を確保し、残りの幅を気分アイコン欄に割り当てる。 */
     grid-template-columns: minmax(0, 1fr) auto auto;
-    align-items: center;
     gap: 1rem;
 }
 
@@ -198,7 +197,6 @@ textarea {
 
     & > legend {
         padding-inline: 0.5rem;
-        font-weight: 700;
     }
 }
 
@@ -240,7 +238,6 @@ textarea {
         background: var(--color-soft);
     }
 }
-
 
 .filter-choice {
     margin: 0;
@@ -293,10 +290,14 @@ textarea {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
-
+s
     & > label {
         font-weight: 700;
     }
+}
+
+.filter-buttons {
+	margin-top: 1.75rem;
 }
 
 /* ノートPC相当の幅では、画像サイズを変えずに検索欄の余白を詰める。 */
