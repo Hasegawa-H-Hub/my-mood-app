@@ -54,14 +54,16 @@
                     <fieldset class="filter-fieldset" id="moodFilter">
                         <legend>気分で絞り込み</legend>
 
-                        <label class="filter-choice" th:each="mood : ${moods}">
-                            <input type="checkbox" th:field="*{moodIds}" th:value="${mood.id}">
-							<img class="mood-icon" th:if="${mood != null}"
-							    th:src="@{|/images/mood/${mood.moodName}.svg|}"
-							    th:alt="${mood.moodJa}"
-							    th:title="${mood.moodJa}"
-							    width="40" height="40">
-                        </label>
+                        <div class="filter-options">
+                            <label class="filter-choice" th:each="mood : ${moods}">
+                                <input type="checkbox" th:field="*{moodIds}" th:value="${mood.id}">
+    							<img class="mood-icon" th:if="${mood != null}"
+    							    th:src="@{|/images/mood/${mood.moodName}.svg|}"
+    							    th:alt="${mood.moodJa}"
+    							    th:title="${mood.moodJa}"
+    							    width="40" height="40">
+                            </label>
+                        </div>
                     </fieldset>
 
                     <div class="filter-actions">
