@@ -183,7 +183,7 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.25rem;
+	justify-content: space-between;
 }
 
 .search-errors {
@@ -207,11 +207,20 @@ textarea {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.65rem 0.75rem;
+    padding: 0.75rem;
     border: 2px solid var(--color-border);
     border-radius: var(--radius-control);
     background: var(--color-surface);
     cursor: pointer;
+	
+	/* ラジオボタンを視覚的に隠す */
+	& input[type="checkbox"],
+	& input[type="radio"] {
+	    position: absolute;
+	    width: 1px;
+	    height: 1px;
+	    opacity: 0;
+	}
 
     &:hover {
         background: var(--color-soft);
@@ -223,8 +232,25 @@ textarea {
     }
 }
 
+
 .filter-choice {
     margin: 0.25rem;
+	
+	/* 気分アイコン */
+	& img {
+	    width: 3rem;
+	    height: 3rem;
+	    object-fit: contain;
+	}
+}
+
+.mood-choice {
+	/* 気分アイコン */
+	& img {
+	    width: 3.5rem;
+	    height: 3.5rem;
+	    object-fit: contain;
+	}
 }
 
 .filter-actions,
@@ -238,7 +264,7 @@ textarea {
 }
 
 .search-controls {
-    flex-basis: 100%;
+    flex-basis: auto;
     gap: 1rem 1.5rem;
 }
 
@@ -376,25 +402,6 @@ textarea {
 .mood-option {
     display: inline-block;
     margin: 0.35rem;
-}
-
-.mood-choice {
-    padding: 0.75rem;
-
-    /* ラジオボタンを視覚的に隠す */
-    & input[type="radio"] {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-    }
-
-    /* 気分アイコン */
-    & img {
-        width: 3.5rem;
-        height: 3.5rem;
-        object-fit: contain;
-    }
 }
 
 .memo-row {
