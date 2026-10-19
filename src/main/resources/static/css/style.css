@@ -436,6 +436,29 @@ s
 }
 
 /* 記録フォーム */
+/* 一覧画面に影響させず、フォーム画面のmainを残りの高さまで広げる。 */
+.form-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-page > .site-header {
+    flex-shrink: 0;
+}
+
+.form-page > .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-page .form-card {
+    width: 100%;
+    /* 余白があるときだけ中央に置き、内容が増えたときはページを伸ばす。 */
+    margin: auto;
+}
+
 .form-card {
     max-width: 72rem;
     margin-inline: auto;
