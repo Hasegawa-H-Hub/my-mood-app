@@ -29,7 +29,7 @@ public class LogForm {
     // 新規判定
     private boolean isNew;
     
-    // 改行コードをLFに統一する
+    // 改行コードをLFに統一
     public void setMemo(String memo) {
         this.memo = memo == null
                 ? null
