@@ -1,0 +1,555 @@
+/* 共通設定 */
+:root {
+    --color-main: #acbda1;
+    --color-surface: #fdfafa;
+    --color-text: #273d3b;
+    --color-muted: #59695e;
+    --color-border: #bcc9b9;
+    --color-soft: #edf2e9;
+    --color-focus: #365d49;
+    --color-error: #963e38;
+    --color-error-surface: #fff1ef;
+    --radius-control: 0.75rem;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    padding: 1.5rem 2rem 3rem;
+    color: var(--color-text);
+    background: #f5f4ed;
+    font-family: "Noto Sans JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    line-height: 1.6;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
+}
+
+button,
+select,
+input[type="checkbox"],
+input[type="radio"] {
+    cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    accent-color: var(--color-focus);
+}
+
+input[type="date"],
+select,
+textarea {
+    max-width: 100%;
+    min-width: 0;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.mood-choice:has(input:focus-visible) {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+}
+
+/* 共通部品 */
+.m-plus-rounded-1c-bold {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    width: min(100%, 96rem);
+    margin: 0 auto 1.5rem;
+}
+
+.logo {
+    width: 20rem;
+    height: auto;
+    display: block;
+}
+
+.main-content {
+    width: min(100%, 96rem);
+    margin-inline: auto;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.35rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-control);
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.15s ease;
+}
+
+.button-primary {
+    color: var(--color-surface);
+    background: #7f9581;
+
+    &:hover {
+        background: #6d846f;
+    }
+}
+
+.button-secondary {
+    border-color: var(--color-border);
+    color: var(--color-text);
+    background: var(--color-surface);
+
+    &:hover {
+        background: var(--color-soft);
+    }
+}
+
+.button-danger {
+    border-color: var(--color-error);
+    color: var(--color-error);
+    background: var(--color-surface);
+
+    &:hover {
+        background: var(--color-error-surface);
+    }
+}
+
+.button-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+}
+
+.notice {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid currentColor;
+    border-radius: var(--radius-control);
+    overflow-wrap: anywhere;
+}
+
+.notice-success {
+    color: var(--color-focus);
+    background: var(--color-soft);
+}
+
+.notice-error {
+    color: var(--color-error);
+    background: var(--color-error-surface);
+}
+
+.field-error {
+    margin-top: 0.75rem;
+    color: var(--color-error);
+    overflow-wrap: anywhere;
+}
+
+/* 一覧：検索欄は結果非表示でも単独で外枠が完結する。 */
+.filter-section,
+.list-section,
+.form-card {
+    border-radius: 1.75rem;
+    background: var(--color-surface);
+    box-shadow: 0 0.5rem 1.75rem rgb(45 65 49 / 8%);
+}
+
+.filter-section,
+.list-section {
+    padding: 2rem;
+}
+
+.filter-form {
+    display: grid;
+    /* 操作欄の幅を確保し、残りの幅を気分アイコン欄に割り当てる。 */
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 1rem;
+}
+
+.search-errors {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+.filter-fieldset {
+    min-width: 0;
+    border: none;
+
+    & > legend {
+        padding-inline: 0.5rem;
+    }
+}
+
+.filter-options {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(max-content, 1fr);
+    justify-items: center;
+    gap: 0.5rem;
+}
+
+.filter-choice,
+.mood-choice {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-control);
+    background: var(--color-surface);
+    cursor: pointer;
+	
+	/* ラジオボタンを視覚的に隠す */
+	& input[type="checkbox"],
+	& input[type="radio"] {
+	    position: absolute;
+	    width: 1px;
+	    height: 1px;
+	    opacity: 0;
+	}
+
+    &:hover {
+        background: var(--color-soft);
+    }
+
+    &:has(input:checked) {
+        border-color: var(--color-focus);
+        background: var(--color-soft);
+    }
+}
+
+.filter-choice {
+    margin: 0;
+	
+	/* 気分アイコン */
+	& img {
+	    width: 3rem;
+	    height: 3rem;
+	    object-fit: contain;
+	}
+}
+
+.mood-choice {
+	/* 気分アイコン */
+	& img {
+	    width: 3.5rem;
+	    height: 3.5rem;
+	    object-fit: contain;
+	}
+}
+
+.filter-actions,
+.search-controls,
+.date-range,
+.search-field {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.search-controls {
+    gap: 1.5rem;
+}
+
+.filter-form .button {
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.search-field input[type="date"] {
+    width: 10.5rem;
+}
+
+.search-field select {
+    width: 11.5rem;
+}
+
+.search-field {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+s
+    & > label {
+        font-weight: 700;
+    }
+}
+
+.filter-buttons {
+	margin-top: 1.75rem;
+}
+
+/* ノートPC相当の幅では、画像サイズを変えずに検索欄の余白を詰める。 */
+@media (max-width: 96rem) {
+    .filter-section {
+        padding-inline: 1rem;
+    }
+
+    .filter-form,
+    .search-controls {
+        gap: 0.75rem;
+    }
+
+    .filter-actions,
+    .date-range {
+        gap: 0.5rem;
+    }
+
+    .filter-form .button {
+        padding-inline: 0.625rem;
+    }
+
+    .search-field input[type="date"] {
+        width: 9rem;
+        padding-inline: 0.5rem;
+    }
+
+    .search-field select {
+        width: 11rem;
+        padding-inline: 0.5rem;
+    }
+}
+
+/* 1280px未満では検索操作欄を次の行へ移し、無理に縮めない。 */
+@media (max-width: 79.99rem) {
+    .filter-form {
+        grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .search-controls {
+        grid-column: 1 / -1;
+        flex-wrap: wrap;
+    }
+
+    .filter-options {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fit, minmax(4.75rem, 1fr));
+    }
+}
+
+/* 一覧：狭い画面では表だけ横スクロールできる。 */
+.list-section {
+    margin-top: 1.5rem;
+}
+
+.table-container {
+    overflow-x: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-control);
+}
+
+.mood-table {
+    width: 100%;
+    min-width: 48rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    & th {
+        padding: 0.9rem 1rem;
+        background: var(--color-main);
+        text-align: center;
+    }
+
+    & td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--color-border);
+        text-align: center;
+        vertical-align: middle;
+        overflow-wrap: anywhere;
+    }
+
+    & tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    & tbody tr:hover {
+        background: var(--color-soft);
+    }
+
+    & .record-memo {
+        text-align: left;
+        white-space: pre-wrap;
+    }
+}
+
+.date-column {
+    width: 22%;
+}
+
+.mood-column {
+    width: 10%;
+}
+
+.memo-column {
+    width: 48%;
+}
+
+.menu-column {
+    width: 20%;
+}
+
+.updated-date {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+}
+
+.mood-icon {
+    width: 3rem;
+    height: 3rem;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.delete-form {
+    display: inline-block;
+    margin: 0.25rem;
+}
+
+.empty-message {
+    padding: 1.5rem;
+    color: var(--color-muted);
+    text-align: center;
+}
+
+/* 記録フォーム */
+/* 一覧画面に影響させず、フォーム画面のmainを残りの高さまで広げる。 */
+.form-page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-page > .site-header {
+    flex-shrink: 0;
+}
+
+.form-page > .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-page .form-card {
+    width: 100%;
+    /* 余白があるときだけ中央に置き、内容が増えたときはページを伸ばす。 */
+    margin: auto;
+}
+
+.form-card {
+    max-width: 72rem;
+    margin-inline: auto;
+    padding: 3rem;
+}
+
+.form-title {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--color-main);
+    font-size: 2.5rem;
+    line-height: 1.4;
+}
+
+.record-form {
+    display: grid;
+    gap: 2rem;
+}
+
+.mood-fieldset {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+    border: none;
+
+    & > legend {
+		float: left;
+		flex: 0 1 12rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+}
+
+.mood-option {
+    display: inline-block;
+    margin: 0.35rem;
+}
+
+.memo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    & > label {
+        flex: 0 1 12rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+}
+
+.memo-control {
+    flex: 1 1 20rem;
+    min-width: 0;
+
+    & textarea {
+		display: block;
+		width: 100%;
+		min-height: 8rem;
+		max-height: 70vh;
+		field-sizing: content;
+		resize: none;
+		line-height: 1.6;
+    }
+
+    & textarea::placeholder {
+        color: var(--color-muted);
+        opacity: 1;
+    }
+}
+
+.character-count {
+    margin-top: 0.5rem;
+    color: var(--color-muted);
+    text-align: right;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    & .button {
+        flex: 0 1 15rem;
+        min-height: 3.5rem;
+        font-size: 1.125rem;
+    }
+}

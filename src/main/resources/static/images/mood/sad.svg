@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Adobe Illustrator 29.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px"
+	 height="800px" viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{opacity:0.56;}
+	.st2{opacity:0.8902;fill:#3C2107;}
+	.st3{opacity:0.8784;fill:#3C2107;}
+	.st4{fill:#ED8170;}
+	.st5{opacity:0.8902;}
+	.st6{fill:#FFD56F;}
+	.st7{fill:url(#SVGID_00000137816935418606268460000008941940753176853691_);}
+	.st8{opacity:0.8784;}
+	.st9{fill:#4E1F11;}
+	.st10{fill:none;stroke:#643321;stroke-width:30;stroke-linecap:round;}
+	.st11{fill:url(#SVGID_00000075147253742776570480000010461229189083325371_);}
+	.st12{fill:#28485B;}
+	.st13{fill:none;stroke:#28485B;stroke-width:30;stroke-linecap:round;}
+	.st14{fill:url(#SVGID_00000026156772689906566420000002090310025638956217_);}
+	.st15{fill:#3E3979;}
+	.st16{fill:none;stroke:#3E3979;stroke-width:30;stroke-linecap:round;}
+	.st17{fill:#28A9E0;}
+	.st18{fill:url(#SVGID_00000130615675502569753250000003278481667244735367_);}
+	.st19{fill:#9E1717;}
+	.st20{fill:none;stroke:#9E1717;stroke-width:30;stroke-linecap:round;}
+</style>
+<g id="happy">
+</g>
+<g id="fun">
+</g>
+<g id="nomal">
+</g>
+<g id="sad">
+	
+		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-2825.0996" y1="812.5378" x2="-2825.0996" y2="796.7878" gradientTransform="matrix(40 0 0 -40 113403.9844 32592.7012)">
+		<stop  offset="0" style="stop-color:#DCD6FA"/>
+		<stop  offset="1" style="stop-color:#C7C1EF"/>
+	</linearGradient>
+	<circle class="st0" cx="400" cy="406.19" r="315"/>
+	<g>
+		<circle class="st15" cx="287.38" cy="352.4" r="36.22"/>
+		<circle class="st15" cx="517.43" cy="352.4" r="36.23"/>
+	</g>
+	<path class="st16" d="M497.6,520.03L497.6,520.03c-20.13-23.94-57.33-38.69-97.6-38.69h0c-40.26,0-77.46,14.75-97.6,38.69l0,0"/>
+	<g>
+		<path class="st17" d="M572.19,467.95c1.11,24.24-12.26,34.94-28.67,35c-16.41-0.06-29.78-10.76-28.67-35
+			c2.31-23.43,29.66-87.77,28.15-87.73C541.39,380.11,569.8,444.54,572.19,467.95z"/>
+	</g>
+</g>
+<g id="angry">
+</g>
+</svg>
