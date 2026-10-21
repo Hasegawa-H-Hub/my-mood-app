@@ -1,7 +1,7 @@
 --気分テーブルを作成
 CREATE TABLE IF NOT EXISTS mood(
 	--id(主キー)
-	id serial PRIMARY KEY,
+	id int PRIMARY KEY,
 	--気分名
 	mood_name text NOT NULL,
 	--気分(日本語表示)
