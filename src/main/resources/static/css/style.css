@@ -37,6 +37,14 @@ textarea {
     color: inherit;
 }
 
+/* ボタンの初期装飾を共通でリセットし、必要な装飾は.buttonなどで指定する。 */
+button {
+    appearance: none;
+    border: 0;
+    padding: 0;
+    background: transparent;
+}
+
 button,
 select,
 input[type="checkbox"],
@@ -90,6 +98,82 @@ textarea {
     width: 20rem;
     height: auto;
     display: block;
+}
+
+/* イースターエッグ：写真と閉じるボタンをまとめて画面中央に置く。 */
+#easter-egg {
+    inset: 0;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    max-width: 90vw;
+    max-height: 95dvh;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    /* 非表示化とトップレイヤーからの取り外しをフェード終了まで遅らせる。 */
+    transition: opacity 0.2s ease,
+        display 0.2s allow-discrete,
+        overlay 0.2s allow-discrete;
+
+    &[open] {
+        display: flex;
+        opacity: 1;
+    }
+
+    & > img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 80vw;
+        /* 高さが小さい画面でもボタンと余白を確保する。 */
+        max-height: min(80dvh, calc(95dvh - 4rem));
+        flex-shrink: 0;
+        object-fit: contain;
+    }
+
+    & > button {
+        min-height: 2.75rem;
+        padding: 0.5rem 1rem;
+        flex-shrink: 0;
+        color: #fff;
+    }
+
+    & > button:focus-visible {
+        outline-color: #fff;
+        outline-offset: -3px;
+    }
+}
+
+#easter-egg::backdrop {
+    background: rgb(0 0 0 / 0%);
+    transition: background-color 0.2s ease,
+        display 0.2s allow-discrete,
+        overlay 0.2s allow-discrete;
+}
+
+#easter-egg[open]::backdrop {
+    background: rgb(0 0 0 / 50%);
+}
+
+@starting-style {
+    #easter-egg[open] {
+        opacity: 0;
+    }
+
+    #easter-egg[open]::backdrop {
+        background: rgb(0 0 0 / 0%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #easter-egg,
+    #easter-egg::backdrop {
+        transition: none;
+    }
 }
 
 .main-content {

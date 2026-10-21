@@ -32,8 +32,8 @@
         </header>
 		
 		<!-- イースターエッグ -->
-		<dialog id="easter-egg">
-		  <img th:src="@{/images/dog.jpg}" alt="くーちゃんの写真">
+		<dialog id="easter-egg" closedby="any" aria-label="くーちゃんの写真">
+		  <img th:src="@{/images/dog.JPG}" alt="くーちゃんの写真">
 
 		  <button type="button" commandfor="easter-egg" command="close">
 		    閉じる
