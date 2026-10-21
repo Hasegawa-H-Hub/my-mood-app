@@ -4,23 +4,41 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
+		<!-- CSS -->
 		<link rel="stylesheet" th:href="@{/css/style.css}">
+		
+		<!-- Googleフォント -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+		
+		<!-- favicon -->
 		<link rel="icon" th:href="@{/favicon.ico}">
         
 		<title th:text="${logForm.isNew()} ? '新しい記録 | My Mood' : '記録を編集 | My Mood'">記録フォーム画面</title>
         
+		<!-- JavaScript -->
 		<script th:src="@{/js/form_script.js}" defer></script>
+		<script th:src="@{/js/easter-egg.js}" defer></script>
     </head>
     <body class="form-page">
         <header class="site-header">
 			<!-- ロゴ -->
 			<h1>
-				<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+				<button type="button" id="logo">
+					<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+				</button>
 			</h1>
         </header>
+		
+		<!-- イースターエッグ -->
+		<dialog id="easter-egg">
+		  <img th:src="@{/images/dog.jpg}" alt="くーちゃんの写真">
+
+		  <button type="button" commandfor="easter-egg" command="close">
+		    閉じる
+		  </button>
+		</dialog>
 
         <main class="main-content">
             <section class="form-card">

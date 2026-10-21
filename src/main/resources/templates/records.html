@@ -5,29 +5,47 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
+		<!-- CSS -->
         <link rel="stylesheet" th:href="@{/css/style.css}">
+		
+		<!-- Googleフォント -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+		
+		<!-- favicon -->
 		<link rel="icon" th:href="@{/favicon.ico}">
 		
         <title>記録一覧 | My Mood</title>
 
-        <!-- 全選択・全解除用JavaScript -->
+        <!-- JavaScript -->
         <script th:src="@{/js/records_script.js}" defer></script>
+		<script th:src="@{/js/easter-egg.js}" defer></script>
     </head>
 
     <!-- 画面全体 -->
     <body>
         <!-- ヘッダー -->
         <header class="site-header">
-            <!-- ロゴ -->
-            <h1>
-				<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+			<!-- ロゴ -->
+			<h1>
+				<button type="button" id="logo">
+					<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+				</button>
 			</h1>
+			
             <!-- 記録作成ボタン -->
             <a class="button button-primary" th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
         </header>
+		
+		<!-- イースターエッグ -->
+		<dialog id="easter-egg">
+		  <img th:src="@{/images/dog.jpg}" alt="くーちゃんの写真">
+
+		  <button type="button" commandfor="easter-egg" command="close">
+		    閉じる
+		  </button>
+		</dialog>
 
         <!-- メイン -->
         <main class="main-content">
