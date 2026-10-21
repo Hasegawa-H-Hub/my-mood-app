@@ -1,3 +1,6 @@
+#DBへの接続URLを設定
+spring.datasource.url=jdbc:postgresql://localhost:5432/mydb
+
 #DB接続のためのユーザー名を設定
 spring.datasource.username=username
 

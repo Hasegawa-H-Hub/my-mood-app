@@ -4,5 +4,6 @@ INSERT INTO mood(id,mood_name,mood_ja) VALUES
 (2,'fun','たのしい'),
 (3,'normal','ふつう'),
 (4,'sad','かなしい'),
-(5,'angry','いらいら')
+(5,'angry','いらいら'),
+(6,'dog','くーちゃん')
 ON CONFLICT (id) DO NOTHING;

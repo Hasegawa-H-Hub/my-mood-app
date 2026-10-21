@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Adobe Illustrator 29.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="800px"
+	 height="800px" viewBox="0 0 800 800" style="enable-background:new 0 0 800 800;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{opacity:0.56;}
+	.st2{opacity:0.8902;fill:#3C2107;}
+	.st3{opacity:0.8784;fill:#3C2107;}
+	.st4{fill:#ED8170;}
+	.st5{opacity:0.8902;}
+	.st6{fill:#FFD56F;}
+	.st7{fill:url(#SVGID_00000064323669901857797670000017132858921677228687_);}
+	.st8{opacity:0.8784;}
+	.st9{fill:#4E1F11;}
+	.st10{fill:none;stroke:#643321;stroke-width:30;stroke-linecap:round;}
+	.st11{fill:url(#SVGID_00000039813669909430952600000005359987491101630616_);}
+	.st12{fill:#28485B;}
+	.st13{fill:none;stroke:#28485B;stroke-width:30;stroke-linecap:round;}
+	.st14{fill:url(#SVGID_00000111186864343765472890000013973093909098016398_);}
+	.st15{fill:#3E3979;}
+	.st16{fill:none;stroke:#3E3979;stroke-width:30;stroke-linecap:round;}
+	.st17{fill:#28A9E0;}
+	.st18{fill:url(#SVGID_00000173853192448107860870000011433239746313852551_);}
+	.st19{fill:#9E1717;}
+	.st20{fill:none;stroke:#9E1717;stroke-width:30;stroke-linecap:round;}
+	.st21{fill:#865032;}
+</style>
+<g id="happy">
+</g>
+<g id="fun">
+</g>
+<g id="nomal">
+</g>
+<g id="sad">
+</g>
+<g id="angry">
+</g>
+<g id="dog">
+	
+		<ellipse transform="matrix(0.9813 -0.1927 0.1927 0.9813 -64.7042 33.9544)" class="st21" cx="142.16" cy="349.54" rx="76.58" ry="114.87"/>
+	
+		<ellipse transform="matrix(0.9995 -0.0313 0.0313 0.9995 -6.1512 9.7517)" class="st21" cx="307.92" cy="201.04" rx="84.24" ry="122.53"/>
+	
+		<ellipse transform="matrix(0.9995 -0.0313 0.0313 0.9995 -6.0607 15.5253)" class="st21" cx="492.08" cy="201.04" rx="84.24" ry="122.53"/>
+	<path class="st21" d="M379.61,366.25c-84.24,0-114.87,84.24-168.48,130.19s-68.92,114.87-30.63,168.48
+		c45.95,68.92,133.68-7.66,199.11-7.66s153.16,76.58,199.11,7.66c38.29-53.61,22.97-122.53-30.63-168.48
+		S463.85,366.25,379.61,366.25z"/>
+	
+		<ellipse transform="matrix(0.1927 -0.9813 0.9813 0.1927 185.5513 924.6229)" class="st21" cx="654.73" cy="349.54" rx="114.87" ry="76.58"/>
+</g>
+</svg>

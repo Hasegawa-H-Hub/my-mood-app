@@ -49,17 +49,22 @@ public class LogServiceImpl implements LogService{
     public void delete(Integer id) {
         logMapper.delete(id);
     }
-    
-    //日付検索
+  
+    //気分・期間・並び順で検索
     @Override
-    public List<Log> selectByDate(LocalDate date) {
-        return logMapper.selectByDate(date);
+    public List<Log> search(
+            List<Integer> moodIds,
+            LocalDate startDate,
+            LocalDate endDate,
+            String sort) {
+ 
+        // 気分が全解除なら、Mapperを呼ばず空の結果を返す
+        if (moodIds == null || moodIds.isEmpty()) {
+            return List.of();
+        }
+ 
+        return logMapper.search(moodIds, startDate, endDate, sort);
     }
-
-    //気分で絞り込み
-    @Override
-    public List<Log> selectByMoodId(Integer moodId) {
-        return logMapper.selectByMoodId(moodId);
-    }
-    
+ 
 }
+ 

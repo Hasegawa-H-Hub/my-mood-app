@@ -1,135 +1,179 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>記録一覧 | My Mood</title>
-</head>
-<!-- 画面全体 -->
-<body>
-    <!-- ヘッダー -->
-    <header>
-        <!-- ロゴ -->
-        <h1>My Mood</h1>
-        <!-- 記録作成ボタン -->
-        <a th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
-    </header>
-    <!-- メイン -->
-    <main>
-        <p th:if="${message != null}" th:text="${message}" role="status"></p>
-        <p th:if="${errorMessage != null}" th:text="${errorMessage}" role="alert"></p>
 
-        <!-- 絞り込み・並び替えは後日実装するため、一時的に無効化 -->
-        <!--/*-->
-        <!-- 絞り込み・並び替え -->
-        <section>
-            <form method="get">
-                <!-- 気分で絞り込み -->
-                <fieldset>
-                    <legend>気分で絞り込み：</legend>
-                    <!-- うれしい -->
-                    <label>
-                        <input type="checkbox" name="moodIds" value="1"
-                               th:checked="${selectedMoodIds == null or selectedMoodIds.contains(1)}">
-                        うれしい
-                    </label>
-                    <!-- たのしい -->
-                    <label>
-                        <input type="checkbox" name="moodIds" value="2"
-                               th:checked="${selectedMoodIds == null or selectedMoodIds.contains(2)}">
-                        たのしい
-                    </label>
-                    <!-- ふつう -->
-                    <label>
-                        <input type="checkbox" name="moodIds" value="3"
-                               th:checked="${selectedMoodIds == null or selectedMoodIds.contains(3)}">
-                        ふつう
-                    </label>
-                    <!-- かなしい -->
-                    <label>
-                        <input type="checkbox" name="moodIds" value="4"
-                               th:checked="${selectedMoodIds == null or selectedMoodIds.contains(4)}">
-                        かなしい
-                    </label>
-                    <!-- いらいら -->
-                    <label>
-                        <input type="checkbox" name="moodIds" value="5"
-                               th:checked="${selectedMoodIds == null or selectedMoodIds.contains(5)}">
-                        いらいら
-                    </label>
-                </fieldset>
-                <!-- 期間で絞り込み -->
-                <div>
-                    <label>開始日
-                        <input type="date" name="startDate" th:value="${startDate}">
-                    </label>
-                    〜
-                    <label>終了日
-                        <input type="date" name="endDate" th:value="${endDate}">
-                    </label>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- CSS -->
+        <link rel="stylesheet" th:href="@{/css/style.css}">
+		
+		<!-- Googleフォント -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+		
+		<!-- favicon -->
+		<link rel="icon" th:href="@{/favicon.ico}">
+		
+        <title>記録一覧 | My Mood</title>
+
+        <!-- JavaScript -->
+        <script th:src="@{/js/records_script.js}" defer></script>
+		<script th:src="@{/js/easter-egg.js}" defer></script>
+    </head>
+
+    <!-- 画面全体 -->
+    <body>
+        <!-- ヘッダー -->
+        <header class="site-header">
+			<!-- ロゴ -->
+			<h1>
+				<button type="button" id="logo">
+					<img class="logo" th:src="@{/images/logo.svg}" alt="My Mood">
+				</button>
+			</h1>
+			
+            <!-- 記録作成ボタン -->
+            <a class="button button-primary" th:href="@{/records/new}"><span aria-hidden="true">＋</span>記録する</a>
+        </header>
+		
+		<!-- イースターエッグ -->
+		<dialog id="easter-egg" closedby="any" aria-label="くーちゃんの写真">
+		  <img th:src="@{/images/dog.JPG}" alt="くーちゃんの写真">
+
+		  <button type="button" commandfor="easter-egg" command="close">
+		    閉じる
+		  </button>
+		</dialog>
+
+        <!-- メイン -->
+        <main class="main-content">
+            <!-- 登録・更新・削除などのメッセージ -->
+            <p class="notice notice-success" th:if="${message != null}" th:text="${message}" role="status"></p>
+            <p class="notice notice-error" th:if="${errorMessage != null}" th:text="${errorMessage}" role="alert"></p>
+
+            <!-- 検索フォーム -->
+            <section class="filter-section">
+                <form class="filter-form" th:action="@{/records}" method="get"
+                    th:object="${searchForm}">
+
+                    <input type="hidden" name="searched" value="true">
+
+                    <div class="notice notice-error search-errors" th:if="${#fields.hasErrors('*')}" role="alert">
+                        <p th:if="${#fields.hasErrors('startDate')}">
+                            開始日を正しく入力してください
+                        </p>
+
+                        <p th:if="${#fields.hasErrors('endDate')}"
+                            th:errors="*{endDate}"></p>
+
+                        <p th:if="${#fields.hasErrors('moodIds')}">
+                            気分を正しく選択してください
+                        </p>
+
+                        <p th:if="${#fields.hasErrors('searched')}">
+                            検索画面を開き直してください
+                        </p>
+                    </div>
+
+                    <fieldset class="filter-fieldset" id="moodFilter">
+                        <legend>気分で絞り込み</legend>
+
+                        <div class="filter-options">
+                            <label class="filter-choice" th:each="mood : ${moods}">
+                                <input type="checkbox" th:field="*{moodIds}" th:value="${mood.id}">
+    							<img class="mood-icon" th:if="${mood != null}"
+    							    th:src="@{|/images/mood/${mood.moodName}.svg|}"
+    							    th:alt="${mood.moodJa}"
+    							    th:title="${mood.moodJa}"
+    							    width="40" height="40">
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <div class="filter-actions filter-buttons">
+                        <button class="button button-secondary" type="button" id="selectAll">全選択</button>
+                        <button class="button button-danger" type="button" id="deselectAll">全解除</button>
+                    </div>
+
+                    <div class="search-controls">
+                        <div class="date-range">
+                            <div class="search-field">
+                                <label for="startDate">開始日</label>
+                                <input type="date" th:field="*{startDate}">
+                            </div>
+                            <div class="search-field">
+                                <label for="endDate">終了日</label>
+                                <input type="date" th:field="*{endDate}">
+                            </div>
+                        </div>
+                        <div class="search-field">
+                            <label for="sort">並び替え</label>
+                            <select th:field="*{sort}">
+                                <option value="desc">日付（新しい順）</option>
+                                <option value="asc">日付（古い順）</option>
+                            </select>
+                        </div>
+                        <button class="button button-primary filter-buttons" type="submit">絞り込む</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 検索結果・記録一覧 -->
+            <section class="list-section" th:if="${searchPerformed}">
+
+                <!-- 検索結果が0件の場合 -->
+                <p class="empty-message" th:if="${#lists.isEmpty(logs)}">
+                    該当する記録はありません
+                </p>
+
+                <!-- 記録一覧 -->
+                <div class="table-container" th:unless="${#lists.isEmpty(logs)}" tabindex="0" role="region" aria-label="記録一覧（横にスクロールできます）">
+                    <table class="mood-table">
+                        <thead>
+                            <tr>
+                                <th class="date-column" scope="col">日付</th>
+                                <th class="mood-column" scope="col">気分</th>
+                                <th class="memo-column" scope="col">ひとことメモ</th>
+                                <th class="menu-column" scope="col">メニュー</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="log : ${logs}">
+                                <!-- 日付 -->
+                                <td>
+                                    <span th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></span>
+                                    <span class="updated-date" th:if="${log.updatedAt != null}"
+                                        th:text="|更新：${#temporals.format(log.updatedAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}|"></span>
+                                </td>
+                                <!-- 気分 -->
+                                <td>
+                                    <img class="mood-icon" th:if="${log.mood != null}"
+                                        th:src="@{|/images/mood/${log.mood.moodName}.svg|}"
+                                        th:alt="${log.mood.moodJa}"
+                                        th:title="${log.mood.moodJa}"
+                                        width="40" height="40">
+                                </td>
+                                <!-- ひとことメモ -->
+                                <td class="record-memo" th:text="${log.memo}"></td>
+                                <!-- メニュー -->
+                                <td>
+                                    <!-- 更新 -->
+                                    <a class="button button-secondary button-small" th:href="@{/records/edit/{id}(id=${log.id})}">更新</a>
+
+                                    <!-- 削除 -->
+                                    <form class="delete-form" th:action="@{/records/delete}" method="post"
+                                        onsubmit="return confirm('この記録を削除しますか？');">
+                                        <input type="hidden" name="id" th:value="${log.id}">
+                                        <button class="button button-danger button-small" type="submit">削除</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <!-- 並び替え -->
-                <div>
-                    <span>並び替え：</span>
-                    <select name="sort">
-                        <option value="desc" th:selected="${sort == 'desc'}">日付（新しい順）</option>
-                        <option value="asc" th:selected="${sort == 'asc'}">日付（古い順）</option>
-                    </select>
-                </div>
-                <!-- 全選択／解除ボタン -->
-                <button type="button">全選択／解除</button>
-                <!-- 絞り込みボタン -->
-                <button type="submit">絞り込み</button>
-            </form>
-        </section>
-        <!--*/-->
-
-        <!-- 記録一覧 -->
-        <section>
-            <p th:if="${#lists.isEmpty(logs)}">記録はまだありません</p>
-            <table th:unless="${#lists.isEmpty(logs)}" border="1">
-                <thead>
-                    <tr>
-                        <th scope="col">日付</th>
-                        <th scope="col">気分</th>
-                        <th scope="col">ひとことメモ</th>
-                        <th scope="col">メニュー</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="log : ${logs}">
-                        <!-- 日付 -->
-                        <td>
-                            <span th:text="${#temporals.format(log.createdAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}"></span>
-                            <br>
-                            <span th:if="${log.updatedAt != null}"
-                                  th:text="|更新：${#temporals.format(log.updatedAt, 'yyyy/MM/dd（E）', T(java.util.Locale).JAPAN)}|"></span>
-                        </td>
-                        <!-- 気分 -->
-                        <td>
-                            <img th:if="${log.mood != null}"
-                                 th:src="@{|/images/mood/${log.mood.moodName}.svg|}"
-                                 th:alt="${log.mood.moodJa}"
-                                 th:title="${log.mood.moodJa}"
-                                 width="40" height="40">
-                        </td>
-                        <!-- ひとことメモ -->
-                        <td th:text="${log.memo}"></td>
-                        <!-- メニュー -->
-                        <td>
-							<!-- 更新 -->
-                            <a th:href="@{/records/edit/{id}(id=${log.id})}">更新</a>
-
-                            <!-- 削除 -->
-                            <form th:action="@{/records/delete}" method="post"
-                                  onsubmit="return confirm('この記録を削除しますか？');">
-                                <input type="hidden" name="id" th:value="${log.id}">
-                                <button type="submit">削除</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-</body>
+            </section>
+        </main>
+    </body>
 </html>
