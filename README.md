@@ -23,3 +23,11 @@
 ## 開発環境
 
 ローカル環境での動作を想定しています。
+
+## くーちゃんについて
+
+![くーちゃんの写真](src/main/resources/static/images/dog.JPG)
+
+くーちゃんは、私たちのチームメンバー[kasehiroki0718-byte](https://github.com/kasehiroki0718-byte)の家族です。
+
+とてもふわふわしています。
