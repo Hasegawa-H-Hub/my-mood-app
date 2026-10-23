@@ -31,3 +31,5 @@
 くーちゃんは、私たちのチームメンバー[kasehiroki0718-byte](https://github.com/kasehiroki0718-byte)の家族です。
 
 とてもふわふわしています。
+
+人間より賢い可能性があります。
